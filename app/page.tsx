@@ -2,12 +2,11 @@
 import { useEffect } from "react";
 import "@n8n/chat/style.css";
 import { createChat } from "@n8n/chat";
-
 export default function App() {
   useEffect(() => {
     createChat({
       webhookUrl:
-        "https://n8n.arjav.hackclub.app/webhook/0d26c855-4594-4a4b-8f83-e2f062ff051d/chat",
+        "https://n8n.arjav.hackclub.app/webhook/79f0a176-56bf-41e7-aeba-338288130bde/chat",
       webhookConfig: {
         method: "POST",
         headers: {},
@@ -20,7 +19,7 @@ export default function App() {
       showWelcomeScreen: false,
       defaultLanguage: "en",
       initialMessages: [
-        "Hi there! 👋",
+        "Hi! 👋",
         "I am Chemi. I am here to help you with your questions.",
       ],
       i18n: {
@@ -29,7 +28,7 @@ export default function App() {
           subtitle: "",
           footer: "",
           getStarted: "New Conversation",
-          inputPlaceholder: "Type your question..",
+          inputPlaceholder: "Ask chemi",
           closeButtonTooltip: "Close chat",
         },
       },
@@ -37,8 +36,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="justify-end">
-      <div id="n8n-chat" className="w-4/5" />
+    <div className="flex flex-col h-screen">
+      <div id="n8n-chat" className="" />
     </div>
   );
 }
