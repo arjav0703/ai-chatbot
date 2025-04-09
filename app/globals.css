@@ -176,6 +176,14 @@
     --chat--toggle--size: 64px;
 }
 
+@font-face {
+    font-family: "Tars-mono";
+    src: url("/tarsMono.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 .tars-mono {
-    font-family: "";
+    font-family: "Tars-mono";
+    letter-spacing: 0.4rem;
 }
