@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+//import type { NextRequest } from "next/server";
 
 // Export the middleware function
 export default auth((req) => {
@@ -15,5 +15,5 @@ export default auth((req) => {
 
 // Configure which paths the middleware should run on
 export const config = {
-  matcher: ["/chat"],
+  matcher: ["/chat-9", "/chat-10"],
 };
