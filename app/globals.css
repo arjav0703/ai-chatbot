@@ -187,3 +187,14 @@
     font-family: "Tars-mono";
     letter-spacing: 0.4rem;
 }
+
+.color-bg {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("/bg1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+*::selection {
+    background-color: #789a30;
+}

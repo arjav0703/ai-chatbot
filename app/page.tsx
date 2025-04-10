@@ -10,7 +10,7 @@ export default async function Home() {
 
   if (!session) {
     return (
-      <div className="flex flex-col bg-zinc-900 min-h-screen dark">
+      <div className="flex flex-col bg-zinc-900 min-h-screen dark color-bg ">
         <Myheader />
 
         <main className="flex-1 flex flex-col items-center justify-center px-4">
@@ -43,28 +43,28 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
-            <div className="bg-zinc-800 p-6 rounded-lg">
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full ">
+            <div className="bg-zinc-800/65 border-1 border-zinc-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Instant Answers
               </h3>
-              <p className="text-zinc-400">
+              <p className="text-zinc-50">
                 Get immediate help with your questions across all CBSE subjects.
               </p>
             </div>
-            <div className="bg-zinc-800 p-6 rounded-lg">
+            <div className="bg-zinc-800/65 border-1 border-zinc-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Personalized Learning
               </h3>
-              <p className="text-zinc-400">
+              <p className="text-zinc-50">
                 Adapts to your learning style and pace for better understanding.
               </p>
             </div>
-            <div className="bg-zinc-800 p-6 rounded-lg">
+            <div className="bg-zinc-800/65 border-1 border-zinc-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-white mb-3">
                 24/7 Availability
               </h3>
-              <p className="text-zinc-400">
+              <p className="text-zinc-50">
                 Study anytime, anywhere with our always-available AI assistant.
               </p>
             </div>
@@ -72,7 +72,7 @@ export default async function Home() {
           <DeveloperNote />
         </main>
 
-        <footer className="p-6 text-center text-zinc-500 text-sm">
+        <footer className="p-6 text-center text-zinc-200 text-sm">
           <p>© {new Date().getFullYear()} CBSE AI. All rights reserved.</p>
         </footer>
       </div>
@@ -80,7 +80,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-col bg-zinc-900 min-h-screen dark">
+    <div className="flex flex-col bg-zinc-900 min-h-screen dark color-bg">
       <header className="sm:p-6 p-4 flex justify-between items-center">
         <h1 className="sm:text-3xl text-2xl font-bold text-white tars-mono">
           CBSE AI
@@ -119,7 +119,7 @@ export default async function Home() {
         <DeveloperNote />
       </main>
 
-      <footer className="p-6 text-center text-zinc-500 text-sm">
+      <footer className="p-6 text-center text-zinc-200 text-sm">
         <p>© {new Date().getFullYear()} CBSE AI. All rights reserved.</p>
       </footer>
     </div>
