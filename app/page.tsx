@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import ClassSelector from "@/components/ClassSelector";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import DeveloperNote from "@/components/DeveloperNote";
 
 export default async function Home() {
   const session = await auth();
@@ -74,6 +75,7 @@ export default async function Home() {
               </p>
             </div>
           </div>
+          <DeveloperNote />
         </main>
 
         <footer className="p-6 text-center text-zinc-500 text-sm">
@@ -115,20 +117,7 @@ export default async function Home() {
           <ClassSelector />
         </div>
 
-        <div className="mt-12 max-w-4xl w-full">
-          <div className="bg-zinc-800 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Study Resources
-            </h3>
-            <p className="text-zinc-400 mb-4">Access helpful study materials</p>
-            <Button
-              variant="outline"
-              className="w-full text-white border-white"
-            >
-              View Resources
-            </Button>
-          </div>
-        </div>
+        <DeveloperNote />
       </main>
 
       <footer className="p-6 text-center text-zinc-500 text-sm">
