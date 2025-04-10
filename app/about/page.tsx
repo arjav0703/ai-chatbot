@@ -1,19 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Myheader from "@/components/MyHeader";
 
 export default function AboutPage() {
   return (
     <div className="flex flex-col bg-zinc-900 min-h-screen dark">
-      <header className="p-6 flex justify-between items-center">
-        <Link href="/">
-          <h1 className="text-3xl font-bold text-white tars-mono">CBSE AI</h1>
-        </Link>
-        <Link href="/login">
-          <Button variant="outline" className="text-white border-white">
-            Sign In
-          </Button>
-        </Link>
-      </header>
+      <Myheader />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
         <h2 className="text-4xl font-bold text-white mb-8">About CBSE AI</h2>
@@ -49,7 +41,7 @@ export default function AboutPage() {
             <li className="mb-2">
               Instant answers to CBSE curriculum questions
             </li>
-            <li className="mb-2">Support for all CBSE subjects and classes</li>
+            <li className="mb-2">Support for all (almost) CBSE subjects.</li>
             <li className="mb-2">
               Step-by-step explanations for complex problems
             </li>

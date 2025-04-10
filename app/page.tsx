@@ -15,8 +15,8 @@ export default async function Home() {
 
         <main className="flex-1 flex flex-col items-center justify-center px-4">
           <div className="text-center max-w-3xl">
-            <h2 className="text-5xl font-bold text-white mb-6 mt-10">
-              Your AI-Powered Study Companion
+            <h2 className="text-3xl font-bold text-white mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
+              YOUR AI POWERED STUDY COMPANION
             </h2>
             <p className="text-xl text-zinc-300 mb-8">
               Get instant answers to your questions, and improve your
@@ -81,8 +81,10 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col bg-zinc-900 min-h-screen dark">
-      <header className="p-6 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-white tars-mono">CBSE AI</h1>
+      <header className="sm:p-6 p-4 flex justify-between items-center">
+        <h1 className="sm:text-3xl text-2xl font-bold text-white tars-mono">
+          CBSE AI
+        </h1>
         <div className="flex items-center gap-4">
           <span className="text-zinc-300">Welcome, {session.user?.name}</span>
           {/* <form action="/api/auth/signout" method="post">
@@ -99,7 +101,10 @@ export default async function Home() {
 
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-2xl mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl font-bold text-white mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
+            YOUR AI POWERED STUDY COMPANION
+          </h2>
+          <h2 className="sm:text-4xl text-2xl font-bold text-white mb-4">
             Select Your Class
           </h2>
           <p className="text-xl text-zinc-300">
