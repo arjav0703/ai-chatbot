@@ -3,6 +3,7 @@ import ClassSelector from "@/components/ClassSelector";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import DeveloperNote from "@/components/DeveloperNote";
+import Myheader from "@/components/MyHeader";
 
 export default async function Home() {
   const session = await auth();
@@ -10,14 +11,7 @@ export default async function Home() {
   if (!session) {
     return (
       <div className="flex flex-col bg-zinc-900 min-h-screen dark">
-        <header className="p-6 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-white tars-mono">CBSE AI</h1>
-          <Link href="/login">
-            <Button variant="outline" className="text-white border-white">
-              Sign In
-            </Button>
-          </Link>
-        </header>
+        <Myheader />
 
         <main className="flex-1 flex flex-col items-center justify-center px-4">
           <div className="text-center max-w-3xl">

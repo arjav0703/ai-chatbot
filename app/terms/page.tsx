@@ -1,22 +1,9 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Myheader from "@/components/MyHeader";
 
 export default function TermsPage() {
   return (
-    <div className="flex flex-col bg-zinc-900 min-h-screen">
-      <header className="p-6 flex justify-between items-center">
-        <Link href="/">
-          <h1 className="text-3xl font-bold text-white tars-mono">CBSE AI</h1>
-        </Link>
-        <Link href="/login">
-          <Button
-            variant="outline"
-            className="text-white border-white hover:bg-white hover:text-zinc-900"
-          >
-            Sign In
-          </Button>
-        </Link>
-      </header>
+    <div className="flex flex-col bg-zinc-900 min-h-screen dark">
+      <Myheader />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
         <h2 className="text-4xl font-bold text-white mb-8">Terms of Service</h2>
