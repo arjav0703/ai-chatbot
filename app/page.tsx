@@ -26,7 +26,8 @@ export default async function Home() {
               <Link href="/login">
                 <Button
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
+                  variant="outline"
+                  className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
                 >
                   Get Started
                 </Button>
@@ -104,7 +105,7 @@ export default async function Home() {
           <h2 className="text-3xl font-bold text-white mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
             YOUR AI POWERED STUDY COMPANION
           </h2>
-          <h2 className="sm:text-4xl text-2xl font-bold text-white mb-4">
+          <h2 className="sm:text-4xl text-2xl font-bold text-white mb-4 ">
             Select Your Class
           </h2>
           <p className="text-xl text-zinc-300">
@@ -112,7 +113,7 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="text-white">
+        <div className="text-white backdrop-blur-sm">
           <ClassSelector />
         </div>
 

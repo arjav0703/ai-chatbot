@@ -19,9 +19,11 @@ export default function ClassSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Select Class</Button>
+        <Button variant="outline" className="backdrop-brightness-80">
+          Select Class
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 dark bg-transparent backdrop-blur-lg backdrop-brightness-60">
         <DropdownMenuLabel>CBSE</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

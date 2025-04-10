@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function DeveloperNote() {
   return (
-    <section className="mt-10 max-w-5xl">
+    <section className="mt-10 max-w-5xl backdrop-brightness-75">
       <Card>
         <CardHeader>
           <CardTitle>Developer's Note</CardTitle>
