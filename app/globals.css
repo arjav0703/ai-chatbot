@@ -190,7 +190,7 @@
 
 .color-bg {
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("/bg1.png");
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/bg1.png");
     background-size: cover;
     background-repeat: no-repeat;
 }

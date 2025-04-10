@@ -35,7 +35,7 @@ export default async function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white px-8 py-6 text-lg"
+                  className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
                 >
                   Learn More
                 </Button>
@@ -44,7 +44,7 @@ export default async function Home() {
           </div>
 
           <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full ">
-            <div className="bg-zinc-800/65 border-1 border-zinc-100 p-6 rounded-lg">
+            <div className="bg-zinc-800/30 border-1 border-zinc-100 p-6 rounded-lg backdrop-blur-sm">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Instant Answers
               </h3>
@@ -52,7 +52,7 @@ export default async function Home() {
                 Get immediate help with your questions across all CBSE subjects.
               </p>
             </div>
-            <div className="bg-zinc-800/65 border-1 border-zinc-100 p-6 rounded-lg">
+            <div className="bg-zinc-800/30 backdrop-blur-sm border-1 border-zinc-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Personalized Learning
               </h3>
@@ -60,7 +60,7 @@ export default async function Home() {
                 Adapts to your learning style and pace for better understanding.
               </p>
             </div>
-            <div className="bg-zinc-800/65 border-1 border-zinc-100 p-6 rounded-lg">
+            <div className="bg-zinc-800/30 backdrop-blur-sm border-1 border-zinc-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-white mb-3">
                 24/7 Availability
               </h3>
