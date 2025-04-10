@@ -21,7 +21,7 @@ export default async function Home() {
 
         <main className="flex-1 flex flex-col items-center justify-center px-4">
           <div className="text-center max-w-3xl">
-            <h2 className="text-5xl font-bold text-white mb-6">
+            <h2 className="text-5xl font-bold text-white mb-6 mt-10">
               Your AI-Powered Study Companion
             </h2>
             <p className="text-xl text-zinc-300 mb-8">
@@ -91,7 +91,7 @@ export default async function Home() {
         <h1 className="text-3xl font-bold text-white tars-mono">CBSE AI</h1>
         <div className="flex items-center gap-4">
           <span className="text-zinc-300">Welcome, {session.user?.name}</span>
-          <form action="/api/auth/signout" method="post">
+          {/* <form action="/api/auth/signout" method="post">
             <Button
               type="submit"
               variant="outline"
@@ -99,7 +99,7 @@ export default async function Home() {
             >
               Sign Out
             </Button>
-          </form>
+          </form> */}
         </div>
       </header>
 
