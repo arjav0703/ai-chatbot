@@ -58,7 +58,7 @@ export default function App() {
   }, [isAuthenticated]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="text-8xl tars-mono">LOADING...</div>;
   }
 
   if (!isAuthenticated) {
