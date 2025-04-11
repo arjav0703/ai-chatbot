@@ -1,6 +1,7 @@
 // import Link from "next/link";
 // import { Button } from "@/components/ui/button";
 import Myheader from "@/components/MyHeader";
+import Link from "next/link";
 
 export default function PrivacyPage() {
   return (
@@ -110,7 +111,12 @@ export default function PrivacyPage() {
             If you have any questions about this privacy policy or our privacy
             practices, please contact us at:
           </p>
-          <p className="text-zinc-300 mb-6">Email: arjav@hackclub.app</p>
+          <p className="text-zinc-300 mb-6">
+            Email:{" "}
+            <Link href="mailto:arjav@hackclub.app" className="hover:underline">
+              arjav@hackclub.app
+            </Link>
+          </p>
         </div>
       </main>
 
