@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
-import { Link2 } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function DeveloperNote() {
   return (
@@ -29,13 +29,15 @@ export default function DeveloperNote() {
               this project for fun as it actually costs money to run an AI
               model. If you have any feedbacks this project, feel free to reach
               out to me via{" "}
-              <Link
-                href="mailto:arjav@hackclub.app"
-                className="hover:underline"
-              >
-                arjav@hackclub.app
-              </Link>
-              .
+              <div className="flex gap-2">
+                <Mail />
+                <Link
+                  href="mailto:arjav@hackclub.app"
+                  className="hover:underline"
+                >
+                  arjav@hackclub.app
+                </Link>
+              </div>
             </p>
           </div>
         </CardContent>
