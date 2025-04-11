@@ -4,7 +4,7 @@ import Myheader from "@/components/MyHeader";
 
 export default function PrivacyPage() {
   return (
-    <div className="flex flex-col bg-zinc-900 min-h-screen">
+    <div className="flex flex-col bg-zinc-900 min-h-screen dark">
       <Myheader />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
