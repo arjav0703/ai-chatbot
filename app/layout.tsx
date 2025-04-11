@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Chemie AI",
-  description: "An AI assistant to help 9th graders with science",
+  title: "CBSE AI",
+  description:
+    "An AI assistant to help 9th and 10th graders with their academic needs",
 };
 
 export default function RootLayout({
@@ -13,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
