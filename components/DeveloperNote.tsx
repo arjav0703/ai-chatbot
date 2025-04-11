@@ -14,7 +14,7 @@ export default function DeveloperNote() {
     <section className="mt-10 max-w-5xl backdrop-brightness-75">
       <Card>
         <CardHeader>
-          <CardTitle>Developer's Note</CardTitle>
+          <CardTitle>Developer`s Note</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex gap-3">
@@ -24,7 +24,7 @@ export default function DeveloperNote() {
             </Avatar>
             <p>
               I am Arjav Jain, the creater of this project. Please do not use
-              this project for "fun" as it actually costs money to run an AI
+              this project for fun as it actually costs money to run an AI
               model. If you have any feedbacks this project, feel free to reach
               out to me.
             </p>
