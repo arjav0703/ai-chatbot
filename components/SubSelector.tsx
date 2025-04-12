@@ -30,6 +30,9 @@ export default function SubSelector() {
           <Link href={"/science"}>
             <DropdownMenuItem>Science</DropdownMenuItem>
           </Link>
+          <Link href={"/sst"}>
+            <DropdownMenuItem>Social Science</DropdownMenuItem>
+          </Link>
           <DropdownMenuItem>Coming soon!</DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
