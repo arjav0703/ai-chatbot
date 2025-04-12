@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
-export default function ClassSelector() {
+export default function SubSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,7 +30,7 @@ export default function ClassSelector() {
           <Link href={"/science"}>
             <DropdownMenuItem>Science</DropdownMenuItem>
           </Link>
-          <DropdownMenuItem>Class 10</DropdownMenuItem>
+          <DropdownMenuItem>Coming soon!</DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
