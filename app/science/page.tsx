@@ -45,7 +45,7 @@ export default function App() {
         ],
         i18n: {
           en: {
-            title: "Class 9",
+            title: "Science",
             subtitle: "",
             footer: "",
             getStarted: "New Conversation",

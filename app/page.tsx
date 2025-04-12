@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
-import ClassSelector from "@/components/ClassSelector";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import DeveloperNote from "@/components/DeveloperNote";
 import Myheader from "@/components/MyHeader";
+import SubSelector from "@/components/SubSelector";
 
 export default async function Home() {
   const session = await auth();
@@ -102,19 +102,16 @@ export default async function Home() {
 
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-2xl mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
+          <h2 className="text-3xl font-bold text-white mb-14 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
             YOUR AI POWERED STUDY COMPANION
           </h2>
-          <h2 className="sm:text-4xl text-2xl font-bold text-white mb-4 ">
-            Select Your Class
-          </h2>
           <p className="text-xl text-zinc-300">
-            Choose your class to start learning with CBSE AI
+            Choose your subject to start learning with CBSE AI
           </p>
         </div>
 
         <div className="text-white backdrop-blur-sm">
-          <ClassSelector />
+          <SubSelector />
         </div>
 
         <DeveloperNote />
