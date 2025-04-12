@@ -24,7 +24,7 @@ export default function DeveloperNote() {
               <AvatarImage src="/arjav.png" />
               <AvatarFallback>AJ</AvatarFallback>
             </Avatar>
-            <p>
+            <div>
               I am Arjav Jain, the creater of this project. Please do not use
               this project for fun as it actually costs money to run an AI
               model. If you have any feedbacks this project, feel free to reach
@@ -38,7 +38,7 @@ export default function DeveloperNote() {
                   arjav@hackclub.app
                 </Link>
               </div>
-            </p>
+            </div>
           </div>
         </CardContent>
         <CardFooter>
