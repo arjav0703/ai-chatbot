@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ChatNav from "@/components/ChatNav";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Message {
   role: "user" | "assistant";
@@ -11,12 +17,32 @@ interface Message {
   timestamp: string;
 }
 
+// Define available webhook URLs
+const WEBHOOK_URLS = [
+  {
+    id: "english-chat",
+    name: "English Chat",
+    url: "https://n8n.arjav.hackclub.app/webhook/english-chat",
+  },
+  {
+    id: "science-chat",
+    name: "Science Chat",
+    url: "https://n8n.arjav.hackclub.app/webhook/79f0a176-56bf-41e7-aeba-338288130bde/chat",
+  },
+  {
+    id: "sst-chat",
+    name: "SST Chat",
+    url: "https://n8n.arjav.hackclub.app/webhook/sst-chat",
+  },
+];
+
 export default function SSTPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string>("");
+  const [selectedWebhook, setSelectedWebhook] = useState(WEBHOOK_URLS[0]);
 
   useEffect(() => {
     // generate a session ID or retrieve from localStorage if it exists
@@ -30,8 +56,8 @@ export default function SSTPage() {
     }
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
@@ -59,6 +85,7 @@ export default function SSTPage() {
         body: JSON.stringify({
           message: userMessage,
           sessionId: sessionId,
+          webhookUrl: selectedWebhook.url, // Pass the selected webhook URL
         }),
       });
 
@@ -106,6 +133,13 @@ export default function SSTPage() {
       ]);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
     }
   };
 
@@ -158,16 +192,44 @@ export default function SSTPage() {
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
           <div className="grid w-full gap-2">
-            <Textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              disabled={isLoading}
-            />
+            <div className="flex gap-2 items-start">
+              <div className="flex-1">
+                <Textarea
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
+                  disabled={isLoading}
+                  className="min-h-[80px] resize-none bg-zinc-800/50 border-zinc-700"
+                />
+              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="min-h-[80px] px-4 bg-zinc-800/50 border-zinc-700 hover:bg-zinc-700/50 hover:text-white transition-colors"
+                  >
+                    {selectedWebhook.name}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-zinc-800 border border-zinc-700">
+                  {WEBHOOK_URLS.map((webhook) => (
+                    <DropdownMenuItem
+                      key={webhook.id}
+                      onClick={() => setSelectedWebhook(webhook)}
+                      className="cursor-pointer text-white hover:bg-zinc-700/50 focus:bg-zinc-700/50"
+                    >
+                      {webhook.name}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
             <Button
               type="submit"
               disabled={isLoading}
-              className="dark bg-zinc-800 text-white hover:text-black"
+              className="dark bg-zinc-800/50 text-white hover:bg-zinc-700/50 hover:text-white border border-zinc-700 transition-colors"
             >
               {isLoading ? "Sending..." : "Send"}
             </Button>
