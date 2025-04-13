@@ -27,7 +27,7 @@ const WEBHOOK_URLS = [
   {
     id: "science-chat",
     name: "Science Chat",
-    url: "https://n8n.arjav.hackclub.app/webhook/79f0a176-56bf-41e7-aeba-338288130bde/chat",
+    url: "https://n8n.arjav.hackclub.app/webhook/science-chat",
   },
   {
     id: "sst-chat",
