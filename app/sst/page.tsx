@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import NewChat from "@/components/NewChat";
+import { ArrowLeft } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -109,55 +112,63 @@ export default function SSTPage() {
   };
 
   return (
-    <div className="container mx-auto max-w-8xl p-4 h-screen flex flex-col dark">
-      <h1 className="text-2xl font-bold mb-4">SST Chat</h1>
+    <div className="w-screen p-4 h-screen bg-primary text-white">
+      <section className="max-w-6xl h-full flex flex-col mx-auto">
+        <nav className="flex justify-between items-center w-full mb-4">
+          <Link
+            href="/"
+            className="text-2xl lg:text-3xl font-bold tars-mono flex items-center gap-2"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span>CBSE-AI</span>
+          </Link>
+          <NewChat />
+        </nav>
 
-      {/* Remove error div for prod environment */}
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
-          {error}
-        </div>
-      )}
-
-      <div className="flex-1 mb-4 p-4 min-w-full">
-        <div className="space-y-4">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
+        {/* Remove error div for prod environment */}
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
+        <div className="flex-1 mb-4 p-4 min-w-full">
+          <div className="space-y-4">
+            {messages.map((message, index) => (
               <div
-                className={`max-w-[80%] rounded-lg p-3 ${
-                  message.role === "user"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-900"
+                key={index}
+                className={`flex ${
+                  message.role === "user" ? "justify-end" : "justify-start"
                 }`}
               >
-                <div className="whitespace-pre-wrap">{message.content}</div>
-                <div className="text-xs mt-1 opacity-70">
-                  {new Date(message.timestamp).toLocaleTimeString()}
+                <div
+                  className={`max-w-[80%] rounded-lg p-3 ${
+                    message.role === "user"
+                      ? "bg-zinc-500 text-white"
+                      : " text-white"
+                  }`}
+                >
+                  <div className="whitespace-pre-wrap">{message.content}</div>
+                  <div className="text-xs mt-1 opacity-70">
+                    {new Date(message.timestamp).toLocaleTimeString()}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-          {isLoading && (
-            <div className="flex justify-start">
-              <div className="bg-gray-100 text-gray-900 rounded-lg p-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100" />
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200" />
+            ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 text-gray-900 rounded-lg p-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100" />
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200" />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-
-      <form onSubmit={handleSubmit} className="flex gap-2">
-        {/* <input
+        <form onSubmit={handleSubmit} className="flex gap-2">
+          {/* <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -165,18 +176,23 @@ export default function SSTPage() {
           className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           disabled={isLoading}
         /> */}
-        <div className="grid w-full gap-2">
-          <Textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            disabled={isLoading}
-          />
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? "Sending..." : "Send"}
-          </Button>
-        </div>
-      </form>
+          <div className="grid w-full gap-2">
+            <Textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+              disabled={isLoading}
+            />
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="dark bg-zinc-800 text-white"
+            >
+              {isLoading ? "Sending..." : "Send"}
+            </Button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 }
