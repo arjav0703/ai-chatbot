@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import NewChat from "@/components/NewChat";
-import { ArrowLeft } from "lucide-react";
 import ChatNav from "@/components/ChatNav";
 
 interface Message {
@@ -133,16 +130,16 @@ export default function SSTPage() {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-lg p-3 ${
+                  className={`max-w-[80%] rounded-xl p-4 ${
                     message.role === "user"
-                      ? "bg-zinc-500 text-white"
+                      ? "bg-zinc-800 text-white"
                       : " text-white"
                   }`}
                 >
                   <div className="whitespace-pre-wrap">{message.content}</div>
-                  <div className="text-xs mt-1 opacity-70">
+                  {/* <div className="text-xs mt-1 opacity-70">
                     {new Date(message.timestamp).toLocaleTimeString()}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
@@ -170,7 +167,7 @@ export default function SSTPage() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="dark bg-zinc-800 text-white"
+              className="dark bg-zinc-800 text-white hover:text-black"
             >
               {isLoading ? "Sending..." : "Send"}
             </Button>
