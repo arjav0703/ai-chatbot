@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import NewChat from "@/components/NewChat";
 import { ArrowLeft } from "lucide-react";
+import ChatNav from "@/components/ChatNav";
 
 interface Message {
   role: "user" | "assistant";
@@ -114,16 +115,7 @@ export default function SSTPage() {
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
       <section className="max-w-6xl h-full flex flex-col mx-auto">
-        <nav className="flex justify-between items-center w-full mb-4">
-          <Link
-            href="/"
-            className="text-2xl lg:text-3xl font-bold tars-mono flex items-center gap-2"
-          >
-            <ArrowLeft className="w-6 h-6" />
-            <span>CBSE-AI</span>
-          </Link>
-          <NewChat />
-        </nav>
+        <ChatNav />
 
         {/* Remove error div for prod environment */}
         {error && (
@@ -168,14 +160,6 @@ export default function SSTPage() {
           </div>
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
-          {/* <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
-          className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          disabled={isLoading}
-        /> */}
           <div className="grid w-full gap-2">
             <Textarea
               value={input}

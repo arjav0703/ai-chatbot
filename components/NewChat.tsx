@@ -14,7 +14,7 @@ export default function NewChat() {
         <Tooltip>
           <TooltipTrigger onClick={() => window.location.reload()}>
             <NotebookPen
-              size={30}
+              size={24}
               className="ml-3 hover:backdrop-brightness-200 my-auto"
             />
           </TooltipTrigger>
