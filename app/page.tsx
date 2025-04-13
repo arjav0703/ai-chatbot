@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import DeveloperNote from "@/components/DeveloperNote";
 import Myheader from "@/components/MyHeader";
-import SubSelector from "@/components/SubSelector";
 
 export default async function Home() {
   const session = await auth();
@@ -106,12 +105,17 @@ export default async function Home() {
             YOUR AI POWERED STUDY COMPANION
           </h2>
           <p className="text-xl text-zinc-300">
-            Choose your subject to start learning with CBSE AI
+            Get help with Class 9th and Class 10th Syllabus
           </p>
         </div>
 
-        <div className="text-white backdrop-blur-sm">
-          <SubSelector />
+        <div className="text-white">
+          <Link
+            href="/chat"
+            className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80"
+          >
+            Get Started
+          </Link>
         </div>
 
         <DeveloperNote />

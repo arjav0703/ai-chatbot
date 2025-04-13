@@ -56,6 +56,10 @@ export default function AboutPage() {
             Ready to enhance your learning experience? Sign up now and start
             exploring the power of AI-assisted education.
           </p>
+          <p>
+            <strong>NOTE:</strong>CBSE AI is not at all related to CBSE (Central
+            Board of Secondary Education).
+          </p>
 
           <div className="mt-8">
             <Link href="/login">

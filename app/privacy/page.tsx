@@ -39,12 +39,7 @@ export default function PrivacyPage() {
               identifier
             </li>
             <li className="mb-2">Contact Data: includes email address</li>
-            <li className="mb-2">
-              Technical Data: includes internet protocol (IP) address, browser
-              type and version, time zone setting and location, browser plug-in
-              types and versions, operating system and platform, and other
-              technology on the devices you use to access this website
-            </li>
+
             <li className="mb-2">
               Usage Data: includes information about how you use our website and
               services
