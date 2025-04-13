@@ -137,7 +137,7 @@ export default function SSTPage() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
     }
@@ -146,7 +146,27 @@ export default function SSTPage() {
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
       <section className="max-w-6xl h-full flex flex-col mx-auto">
-        <ChatNav />
+        <div className="flex gap-4 dark">
+          <ChatNav />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button type="button" variant="outline">
+                {selectedWebhook.name}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-primary">
+              {WEBHOOK_URLS.map((webhook) => (
+                <DropdownMenuItem
+                  key={webhook.id}
+                  onClick={() => setSelectedWebhook(webhook)}
+                  className="text-white"
+                >
+                  {webhook.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
 
         {/* Remove error div for prod environment */}
         {error && (
@@ -203,28 +223,6 @@ export default function SSTPage() {
                   className="min-h-[80px] resize-none bg-zinc-800/50 border-zinc-700"
                 />
               </div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
-                    type="button" 
-                    variant="outline" 
-                    className="min-h-[80px] px-4 bg-zinc-800/50 border-zinc-700 hover:bg-zinc-700/50 hover:text-white transition-colors"
-                  >
-                    {selectedWebhook.name}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-zinc-800 border border-zinc-700">
-                  {WEBHOOK_URLS.map((webhook) => (
-                    <DropdownMenuItem
-                      key={webhook.id}
-                      onClick={() => setSelectedWebhook(webhook)}
-                      className="cursor-pointer text-white hover:bg-zinc-700/50 focus:bg-zinc-700/50"
-                    >
-                      {webhook.name}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
             </div>
             <Button
               type="submit"
