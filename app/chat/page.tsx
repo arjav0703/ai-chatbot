@@ -174,7 +174,7 @@ export default function SSTPage() {
             {error}
           </div>
         )}
-        <div className="flex-1 mb-4 p-4 min-w-full">
+        <div className="flex-1 mb-4 p-4 min-w-full overflow-y-auto">
           <div className="space-y-4">
             {messages.map((message, index) => (
               <div
