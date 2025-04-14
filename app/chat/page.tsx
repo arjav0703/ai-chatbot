@@ -142,6 +142,16 @@ export default function SSTPage() {
       handleSubmit();
     }
   };
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((res) => res.json())
+      .then((data) => setSession(data));
+  }, []);
+
+  if (!session)
+    return <div>Back off bitch, you ain`t authenticated. ~ Arjav</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
