@@ -150,8 +150,7 @@ export default function SSTPage() {
       .then((data) => setSession(data));
   }, []);
 
-  if (!session)
-    return <div>Back off bitch, you ain`t authenticated. ~ Arjav</div>;
+  if (!session) return <div>If this dosen`t work, please login</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
