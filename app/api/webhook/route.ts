@@ -18,8 +18,8 @@ export async function POST(request: Request) {
 
     // webhook data
     const webhookData = {
+      message: body.message,
       sessionId: sessionId,
-      chatInput: body.message,
     };
 
     // Use the provided webhook URL or fall back to the default
