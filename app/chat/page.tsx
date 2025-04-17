@@ -22,7 +22,7 @@ const WEBHOOK_URLS = [
   {
     id: "english-chat",
     name: "English Chat",
-    url: process.env.eng_url!,
+    url: "https://english.arjav.hackclub.app/webhook",
   },
   {
     id: "science-chat",
