@@ -22,17 +22,17 @@ const WEBHOOK_URLS = [
   {
     id: "english-chat",
     name: "English Chat",
-    url: "http://localhost:8080/webhook",
+    url: process.env.eng_url!,
   },
   {
     id: "science-chat",
     name: "Science Chat",
-    url: "https://n8n.arjav.hackclub.app/webhook/science-chat",
+    url: process.env.sci_url!,
   },
   {
     id: "sst-chat",
     name: "SST Chat",
-    url: "https://n8n.arjav.hackclub.app/webhook/sst-chat",
+    url: process.env.sst_url!,
   },
 ];
 

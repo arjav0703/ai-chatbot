@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 
 // Default webhook URL if none is provided
-const DEFAULT_WEBHOOK_URL =
-  "https://n8n.arjav.hackclub.app/webhook/english-chat";
+const DEFAULT_WEBHOOK_URL = "https://science.arjav.hackclub.app/webhook";
 
 export async function POST(request: Request) {
   console.log("Webhook request received");
@@ -20,6 +19,7 @@ export async function POST(request: Request) {
     const webhookData = {
       message: body.message,
       sessionId: sessionId,
+      authToken: process.env.AUTH_SECRET!,
     };
 
     // Use the provided webhook URL or fall back to the default
