@@ -22,17 +22,17 @@ const WEBHOOK_URLS = [
   {
     id: "english-chat",
     name: "English Chat",
-    url: "https://english.arjav.hackclub.app/webhook",
+    url: "https://6801f69d1458150c13ad.fra.appwrite.run/webhook",
   },
   {
     id: "science-chat",
     name: "Science Chat",
-    url: process.env.sci_url!,
+    url: "https://68020a0580f1c7233808.fra.appwrite.run/webhook",
   },
   {
     id: "sst-chat",
     name: "SST Chat",
-    url: process.env.sst_url!,
+    url: "https://68020a29320b98c39ebd.fra.appwrite.run/webhook",
   },
 ];
 
@@ -46,15 +46,13 @@ export default function SSTPage() {
   const [selectedWebhook, setSelectedWebhook] = useState(WEBHOOK_URLS[0]);
 
   useEffect(() => {
-    // generate a session ID or retrieve from localStorage if it exists
-    const storedSessionId = localStorage.getItem("sst_chat_session_id");
-    if (storedSessionId) {
-      setSessionId(storedSessionId);
-    } else {
-      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-      setSessionId(newSessionId);
-      localStorage.setItem("sst_chat_session_id", newSessionId);
-    }
+    // Clear session ID from localStorage on page refresh
+    localStorage.removeItem("chat_session_id");
+
+    // Generate a new session ID
+    const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    setSessionId(newSessionId);
+    localStorage.setItem("chat_session_id", newSessionId);
   }, []);
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
