@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   keywords: ["CBSE", "AI", "Class 9", "Class 10"],
@@ -59,6 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
+      <GoogleAnalytics gaId="G-2Z24YF521F" />
     </html>
   );
 }
