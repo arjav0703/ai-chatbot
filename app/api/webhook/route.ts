@@ -43,21 +43,29 @@ export async function POST(request: Request) {
       Object.fromEntries(response.headers.entries()),
     );
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Webhook error response:", errorText);
-      throw new Error(
-        `Webhook request failed with status ${response.status}: ${errorText}`,
-      );
-    }
-
-    // try to parse the response as JSON
-    // try to parse the response as JSON
+    // Stream the response to handle large payloads
     let responseData;
-    const rawResponse = await response.text();
-    console.log("Raw response:", rawResponse);
+    let rawResponse = "";
 
     try {
+      const reader = response.body?.getReader();
+      if (reader) {
+        const decoder = new TextDecoder();
+        let done = false;
+
+        while (!done) {
+          const { value, done: readerDone } = await reader.read();
+          done = readerDone;
+          if (value) {
+            rawResponse += decoder.decode(value, { stream: true });
+          }
+        }
+      } else {
+        rawResponse = await response.text();
+      }
+
+      console.log("Raw response:", rawResponse);
+
       const contentType = response.headers.get("Content-Type") || "";
       if (contentType.includes("application/json")) {
         responseData = rawResponse ? JSON.parse(rawResponse) : {};
@@ -66,9 +74,10 @@ export async function POST(request: Request) {
         responseData = { message: rawResponse };
       }
     } catch (e) {
-      console.error("Error parsing response as JSON:", e);
+      console.error("Error handling response:", e);
       responseData = { message: rawResponse };
     }
+
     let finalResponse = "";
 
     // Handle array response format with output field
