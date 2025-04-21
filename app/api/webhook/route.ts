@@ -52,17 +52,23 @@ export async function POST(request: Request) {
     }
 
     // try to parse the response as JSON
+    // try to parse the response as JSON
     let responseData;
     const rawResponse = await response.text();
     console.log("Raw response:", rawResponse);
 
     try {
-      responseData = rawResponse ? JSON.parse(rawResponse) : {};
+      const contentType = response.headers.get("Content-Type") || "";
+      if (contentType.includes("application/json")) {
+        responseData = rawResponse ? JSON.parse(rawResponse) : {};
+      } else {
+        console.log("Response is not JSON, treating as plain text");
+        responseData = { message: rawResponse };
+      }
     } catch (e) {
-      console.log("Response is not JSON, using as plain text", e);
+      console.error("Error parsing response as JSON:", e);
       responseData = { message: rawResponse };
     }
-
     let finalResponse = "";
 
     // Handle array response format with output field
