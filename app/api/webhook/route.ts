@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 
-// Default webhook URL if none is provided
-const DEFAULT_WEBHOOK_URL = "https://science.arjav.hackclub.app/webhook";
-
 export async function POST(request: Request) {
   console.log("Webhook request received");
 
@@ -10,20 +7,19 @@ export async function POST(request: Request) {
     const body = await request.json();
     console.log("Request body:", body);
 
-    // generate a session ID
+    // Generate a session ID
     const sessionId =
       body.sessionId ||
       `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
-    // webhook data
+    // Webhook data
     const webhookData = {
       message: body.message,
       sessionId: sessionId,
       authToken: process.env.AUTH_SECRET!,
     };
 
-    // Use the provided webhook URL or fall back to the default
-    const webhookUrl = body.webhookUrl || DEFAULT_WEBHOOK_URL;
+    const webhookUrl = body.webhookUrl;
 
     console.log("Sending webhook request to:", webhookUrl);
     console.log("Webhook data:", webhookData);
@@ -38,16 +34,13 @@ export async function POST(request: Request) {
     });
 
     console.log("Webhook response status:", response.status);
-    console.log(
-      "Webhook response headers:",
-      Object.fromEntries(response.headers.entries()),
-    );
 
-    // Stream the response to handle large payloads
+    // Handle response more robustly
     let responseData;
     let rawResponse = "";
 
     try {
+      // First try to read as stream
       const reader = response.body?.getReader();
       if (reader) {
         const decoder = new TextDecoder();
@@ -57,34 +50,44 @@ export async function POST(request: Request) {
           const { value, done: readerDone } = await reader.read();
           done = readerDone;
           if (value) {
-            rawResponse += decoder.decode(value, { stream: true });
+            rawResponse += decoder.decode(value, { stream: !done });
           }
         }
       } else {
+        // Fallback to regular text() if no stream
         rawResponse = await response.text();
       }
 
-      console.log("Raw response:", rawResponse);
+      // Trim whitespace which might cause issues
+      rawResponse = rawResponse.trim();
 
-      const contentType = response.headers.get("Content-Type") || "";
-      if (contentType.includes("application/json")) {
-        responseData = rawResponse ? JSON.parse(rawResponse) : {};
+      console.log("Raw response length:", rawResponse.length);
+
+      // Only try to parse if there's actual content
+      if (rawResponse) {
+        try {
+          responseData = JSON.parse(rawResponse);
+        } catch (parseError) {
+          console.warn(
+            "Failed to parse as JSON, treating as text:",
+            parseError,
+          );
+          responseData = { message: rawResponse };
+        }
       } else {
-        console.log("Response is not JSON, treating as plain text");
-        responseData = { message: rawResponse };
+        responseData = {};
       }
     } catch (e) {
       console.error("Error handling response:", e);
-      responseData = { message: rawResponse };
+      responseData = { error: "Failed to process response" };
     }
 
+    // Process the response data
     let finalResponse = "";
 
-    // Handle array response format with output field
     if (Array.isArray(responseData) && responseData.length > 0) {
       finalResponse = responseData[0].output || "";
-    } else if (typeof responseData === "object") {
-      // Fallback to other common fields if not in array format
+    } else if (typeof responseData === "object" && responseData !== null) {
       finalResponse =
         responseData.output ||
         responseData.response ||
