@@ -1,6 +1,7 @@
 "use client";
 //import { createChat } from "@n8n/chat";
 import { useEffect, useState } from "react";
+import { Client } from "appwrite";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ChatNav from "@/components/ChatNav";
@@ -35,6 +36,11 @@ const WEBHOOK_URLS = [
     url: "https://68020a29320b98c39ebd.fra.appwrite.run/webhook",
   },
 ];
+
+const client = new Client();
+client
+  .setEndpoint("https://fra.cloud.appwrite.io/v1")
+  .setProject("6801f59d003a67ca5e6e");
 
 export default function SSTPage() {
   // return <div>the servers are down for development</div>;
