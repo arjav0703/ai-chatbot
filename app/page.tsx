@@ -120,7 +120,7 @@ export default async function Home() {
         <div className="text-white">
           <Link
             href="/chat"
-            className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80"
+            className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70"
           >
             Get Started
           </Link>
