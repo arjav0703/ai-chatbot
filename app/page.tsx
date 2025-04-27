@@ -3,9 +3,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import DeveloperNote from "@/components/DeveloperNote";
 import Myheader from "@/components/MyHeader";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default async function Home() {
   const session = await auth();
+  console.log("User Image URL:", session?.user?.image);
 
   if (!session) {
     return (
@@ -87,6 +89,12 @@ export default async function Home() {
         </h1>
         <div className="flex items-center gap-4">
           <span className="text-zinc-300">Welcome, {session.user?.name}</span>
+          <Avatar className="w-12 h-12">
+            <AvatarImage src={`${session.user?.image}`} />
+            <AvatarFallback>
+              {(session.user?.name?.[0], session.user?.name?.[1])}
+            </AvatarFallback>
+          </Avatar>
           {/* <form action="/api/auth/signout" method="post">
             <Button
               type="submit"
