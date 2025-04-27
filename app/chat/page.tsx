@@ -1,8 +1,7 @@
 "use client";
-//import { createChat } from "@n8n/chat";
 import { useEffect, useState } from "react";
 import { Client } from "appwrite";
-import { Textarea } from "@/components/ui/textarea";
+// import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ChatNav from "@/components/ChatNav";
 import {
@@ -11,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Loader2 } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -18,7 +18,6 @@ interface Message {
   timestamp: string;
 }
 
-// Define available webhook URLs
 const WEBHOOK_URLS = [
   {
     id: "english-chat",
@@ -43,7 +42,6 @@ client
   .setProject("6801f59d003a67ca5e6e");
 
 export default function SSTPage() {
-  // return <div>the servers are down for development</div>;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -52,11 +50,10 @@ export default function SSTPage() {
   const [selectedWebhook, setSelectedWebhook] = useState(WEBHOOK_URLS[0]);
 
   useEffect(() => {
-    // Clear session ID from localStorage on page refresh
     localStorage.removeItem("chat_session_id");
-
-    // Generate a new session ID
-    const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    const newSessionId = `session_${Date.now()}_${Math.random()
+      .toString(36)
+      .substring(2, 9)}`;
     setSessionId(newSessionId);
     localStorage.setItem("chat_session_id", newSessionId);
   }, []);
@@ -71,7 +68,6 @@ export default function SSTPage() {
     setIsLoading(true);
     setError(null);
 
-    // add user message to chat
     setMessages((prev) => [
       ...prev,
       {
@@ -90,20 +86,16 @@ export default function SSTPage() {
         body: JSON.stringify({
           message: userMessage,
           sessionId: sessionId,
-          webhookUrl: selectedWebhook.url, // Pass the selected webhook URL
+          webhookUrl: selectedWebhook.url,
         }),
       });
 
-      console.log("Webhook response status:", response.status);
-
       const data = await response.json();
-      console.log("Webhook response data:", data);
 
       if (!response.ok || !data.success) {
         throw new Error(data.error || "Failed to get response");
       }
 
-      // Update session ID if returned from the server
       if (data.sessionId && data.sessionId !== sessionId) {
         setSessionId(data.sessionId);
         localStorage.setItem("sst_chat_session_id", data.sessionId);
@@ -114,7 +106,6 @@ export default function SSTPage() {
           ? data.response
           : JSON.stringify(data.response);
 
-      // Add assistant response to chat
       setMessages((prev) => [
         ...prev,
         {
@@ -124,7 +115,6 @@ export default function SSTPage() {
         },
       ]);
     } catch (error) {
-      console.error("Error:", error);
       const errorMessage =
         error instanceof Error ? error.message : "An unknown error occurred";
       setError(errorMessage);
@@ -147,6 +137,7 @@ export default function SSTPage() {
       handleSubmit();
     }
   };
+
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -155,34 +146,15 @@ export default function SSTPage() {
       .then((data) => setSession(data));
   }, []);
 
-  if (!session) return <div>If this dosen`t work, please login</div>;
+  if (!session) return <div>If this doesn`t work, please login</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
       <section className="max-w-6xl h-full flex flex-col mx-auto">
         <div className="flex gap-4 dark">
           <ChatNav />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button type="button" variant="outline">
-                {selectedWebhook.name}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-primary">
-              {WEBHOOK_URLS.map((webhook) => (
-                <DropdownMenuItem
-                  key={webhook.id}
-                  onClick={() => setSelectedWebhook(webhook)}
-                  className="text-white"
-                >
-                  {webhook.name}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
 
-        {/* Remove error div for prod environment */}
         {error && (
           <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
             {error}
@@ -205,45 +177,64 @@ export default function SSTPage() {
                   }`}
                 >
                   <div className="whitespace-pre-wrap">{message.content}</div>
-                  {/* <div className="text-xs mt-1 opacity-70">
-                    {new Date(message.timestamp).toLocaleTimeString()}
-                  </div> */}
                 </div>
               </div>
             ))}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-gray-100 text-gray-900 rounded-lg p-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100" />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200" />
-                  </div>
+                  <Loader2 className="animate-spin" />
                 </div>
               </div>
             )}
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="flex gap-2">
-          <div className="grid w-full gap-2">
-            <div className="flex gap-2 items-start">
-              <div className="flex-1">
-                <Textarea
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
-                  disabled={isLoading}
-                  className="min-h-[80px] resize-none bg-zinc-800/50 border-zinc-700"
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+          <div className="relative">
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Type your message..."
+              disabled={isLoading}
+              aria-label="Message input"
+              className="w-full min-h-[120px] rounded-lg p-4 bg-zinc-800/50 border border-zinc-700 text-white resize-none focus:outline-none focus:ring-2 focus:ring-zinc-500"
+            />
+            <div className="absolute bottom-2 right-4 text-xs text-gray-400">
+              {input.length}/500
             </div>
+          </div>
+
+          <div className="flex items-center justify-end gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50"
+                >
+                  {selectedWebhook.name}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-zinc-800 text-white border border-zinc-700">
+                {WEBHOOK_URLS.map((webhook) => (
+                  <DropdownMenuItem
+                    key={webhook.id}
+                    onClick={() => setSelectedWebhook(webhook)}
+                    className="hover:bg-zinc-700/50"
+                  >
+                    {webhook.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button
               type="submit"
               disabled={isLoading}
-              className="dark bg-zinc-800/50 text-white hover:bg-zinc-700/50 hover:text-white border border-zinc-700 transition-colors"
+              className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
             >
-              {isLoading ? "Sending..." : "Send"}
+              {isLoading ? <Loader2 className="animate-spin" /> : "Send"}
             </Button>
           </div>
         </form>
