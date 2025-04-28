@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import DeveloperNote from "@/components/DeveloperNote";
 import Myheader from "@/components/MyHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import Motiondiv from "@/components/motion/div";
 export default async function Home() {
   const session = await auth();
   console.log("User Image URL:", session?.user?.image);
@@ -25,22 +25,26 @@ export default async function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/login">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
-                >
-                  Get Started
-                </Button>
+                <Motiondiv>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
+                  >
+                    Get Started
+                  </Button>
+                </Motiondiv>
               </Link>
               <Link href="/about">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
-                >
-                  Learn More
-                </Button>
+                <Motiondiv>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
+                  >
+                    Learn More
+                  </Button>
+                </Motiondiv>
               </Link>
             </div>
           </div>
@@ -89,12 +93,14 @@ export default async function Home() {
         </h1>
         <div className="flex items-center gap-4">
           <span className="text-zinc-300">Welcome, {session.user?.name}</span>
-          <Avatar className="w-12 h-12">
-            <AvatarImage src={`${session.user?.image}`} />
-            <AvatarFallback>
-              {(session.user?.name?.[0], session.user?.name?.[1])}
-            </AvatarFallback>
-          </Avatar>
+          <Motiondiv>
+            <Avatar className="w-12 h-12">
+              <AvatarImage src={`${session.user?.image}`} />
+              <AvatarFallback>
+                {(session.user?.name?.[0], session.user?.name?.[1])}
+              </AvatarFallback>
+            </Avatar>
+          </Motiondiv>
           {/* <form action="/api/auth/signout" method="post">
             <Button
               type="submit"
@@ -118,12 +124,14 @@ export default async function Home() {
         </div>
 
         <div className="text-white">
-          <Link
-            href="/chat"
-            className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70"
-          >
-            Get Started
-          </Link>
+          <Motiondiv>
+            <Link
+              href="/chat"
+              className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70"
+            >
+              Get Started
+            </Link>
+          </Motiondiv>
         </div>
 
         <DeveloperNote />

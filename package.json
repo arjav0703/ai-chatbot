@@ -27,6 +27,7 @@
     "lucide-react": "^0.487.0",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
+    "motion": "^12.9.2",
     "next": "15.2.4",
     "next-auth": "^5.0.0-beta.25",
     "postcss": "^8.5.3",
