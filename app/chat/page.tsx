@@ -214,7 +214,7 @@ export default function SSTPage() {
                   variant="outline"
                   className="rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50"
                 >
-                  {selectedWebhook.name}
+                  {selectedWebhook.name} <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-zinc-800 text-white border border-zinc-700">
@@ -224,7 +224,7 @@ export default function SSTPage() {
                     onClick={() => setSelectedWebhook(webhook)}
                     className="hover:bg-zinc-700/50"
                   >
-                    {webhook.name} <ChevronDown className="w-4 h-4" />
+                    {webhook.name}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
