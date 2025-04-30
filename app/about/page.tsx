@@ -65,7 +65,7 @@ export default function AboutPage() {
             <Link href="/login">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
+                className="border-white text-white px-4 py-3 text-lg backdrop-blur-md bg-transparent"
               >
                 Sign Up Now
               </Button>
