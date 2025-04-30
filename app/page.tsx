@@ -5,6 +5,7 @@ import DeveloperNote from "@/components/DeveloperNote";
 import Myheader from "@/components/MyHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Motiondiv from "@/components/motion/div";
+import { signOut } from "@/auth";
 export default async function Home() {
   const session = await auth();
   console.log("User Image URL:", session?.user?.image);
@@ -110,6 +111,23 @@ export default async function Home() {
               Sign Out
             </Button>
           </form> */}
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <Motiondiv>
+              <Button
+                size="lg"
+                type="submit"
+                variant="outline"
+                className="border-white text-white px-4 py-3 text-lg backdrop-blur-md bg-transparent"
+              >
+                Sign out
+              </Button>
+            </Motiondiv>
+          </form>
         </div>
       </header>
 
