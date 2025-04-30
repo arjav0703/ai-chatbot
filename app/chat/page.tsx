@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { Client } from "appwrite";
 // import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -223,7 +224,7 @@ export default function SSTPage() {
                     onClick={() => setSelectedWebhook(webhook)}
                     className="hover:bg-zinc-700/50"
                   >
-                    {webhook.name}
+                    {webhook.name} <ChevronDown className="w-4 h-4" />
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
