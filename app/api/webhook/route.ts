@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     console.log("Webhook response status:", response.status);
 
     // Handle response more robustly
-    let responseData: any;
+    let responseData;
     let rawResponse = "";
 
     try {
