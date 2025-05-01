@@ -12,21 +12,36 @@ const supabase = createClient(
   process.env.SUPABASE_KEY,
 );
 
-const handler = async (req, res) => {
+export const POST = async (req) => {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   const { GOOGLE_API_KEY, PINECONE_API_KEY, AUTH_SECRET } = process.env;
 
-  const { message, sessionId, authToken } = req.body;
+  const { message, sessionId, authToken } = await req.json();
 
   if (!message || !sessionId) {
-    return res.status(400).json({ error: "Missing message or sessionId" });
+    return new Response(
+      JSON.stringify({ error: "Missing message or sessionId" }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   if (authToken !== AUTH_SECRET) {
-    return res.status(401).json({ error: "Back off, you ain't authenticated" });
+    return new Response(
+      JSON.stringify({ error: "Back off, you ain't authenticated" }),
+      {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   try {
@@ -48,7 +63,7 @@ const handler = async (req, res) => {
         name: "Science database",
         description: "Retrieve information to answer user queries.",
         async func(query) {
-          const results = await vectorStore.similaritySearch(query, 5);
+          const results = await vectorStore.similaritySearch(query, 6);
           return results.map((r) => r.pageContent).join("\n\n---\n");
         },
       },
@@ -108,16 +123,23 @@ const handler = async (req, res) => {
 
     if (insertError) throw new Error(insertError.message);
 
-    return res.status(200).json({
-      success: true,
-      response: result.output,
-      sessionId,
-      timestamp: Date.now(),
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        response: result.output,
+        sessionId,
+        timestamp: Date.now(),
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   } catch (err) {
     console.error("❌ Error:", err);
-    return res.status(500).json({ error: err.message });
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
-
-export default handler;

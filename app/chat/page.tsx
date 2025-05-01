@@ -28,7 +28,7 @@ const WEBHOOK_URLS = [
   {
     id: "science-chat",
     name: "Science Chat",
-    url: "https://68020a0580f1c7233808.fra.appwrite.run/webhook",
+    url: "http://localhost:3000/api/chat",
   },
   {
     id: "sst-chat",
@@ -147,7 +147,7 @@ export default function SSTPage() {
       .then((data) => setSession(data));
   }, []);
 
-  if (!session) return <div></div>;
+  if (!session) return <div>Loading...</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const webhookData = {
       message: body.message,
       sessionId: sessionId,
-      authToken: process.env.AUTH_SECRET!,
+      authToken: process.env.AUTH_SECRET,
     };
 
     const webhookUrl = body.webhookUrl;
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     console.log("Webhook response status:", response.status);
 
     // Handle response more robustly
-    let responseData;
+    let responseData: any;
     let rawResponse = "";
 
     try {
