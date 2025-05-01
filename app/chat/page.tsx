@@ -147,7 +147,7 @@ export default function SSTPage() {
       .then((data) => setSession(data));
   }, []);
 
-  if (!session) return <div></div>;
+  if (!session) return <div>Loading...</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
