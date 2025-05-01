@@ -13,7 +13,7 @@ const supabase = createClient(
 );
 
 const systemMsg =
-  "System: You are Chemi, an AI agent created by arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
+  "System: You are Chemi, an AI agent created by Arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
 
 export const POST = async (req) => {
   if (req.method !== "POST") {
@@ -76,14 +76,14 @@ export const POST = async (req) => {
     const model = new ChatGoogleGenerativeAI({
       model: "gemini-2.0-flash",
       apiKey: GOOGLE_API_KEY,
-      systemInstruction: {
-        role: "system",
-        content: systemMsg,
-      },
     });
 
+    // === Agent Executor ===
     const executor = await initializeAgentExecutorWithOptions(tools, model, {
       agentType: "chat-zero-shot-react-description",
+      agentArgs: {
+        prefix: systemMsg,
+      },
       verbose: true,
       returnIntermediateSteps: true,
     });
@@ -109,9 +109,10 @@ export const POST = async (req) => {
     const formattedHistory = formatHistory(history.reverse());
 
     const finalInput = formattedHistory
-      ? `${systemMsg}\n${formattedHistory}\nUser: ${message}`
-      : `${systemMsg}\nUser: ${message}`;
+      ? `\n${formattedHistory}\nUser: ${message}`
+      : `\nUser: ${message}`;
 
+    // === Run the Agent ===
     const result = await executor.invoke({ input: finalInput });
 
     // === Save to Supabase ===

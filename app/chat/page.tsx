@@ -22,7 +22,7 @@ interface Message {
 const WEBHOOK_URLS = [
   {
     id: "english-chat",
-    name: "Englisht",
+    name: "English",
     url: "https://6801f69d1458150c13ad.fra.appwrite.run/webhook",
   },
   {
