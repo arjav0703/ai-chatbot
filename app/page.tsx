@@ -98,7 +98,7 @@ export default async function Home() {
             <Avatar className="w-12 h-12">
               <AvatarImage src={`${session.user?.image}`} />
               <AvatarFallback>
-                {(session.user?.name?.[0], session.user?.name?.[1])}
+                {`${session.user?.name?.[0] || ""}${session.user?.name?.[1] || ""}`}
               </AvatarFallback>
             </Avatar>
           </Motiondiv>

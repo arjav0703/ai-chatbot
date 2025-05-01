@@ -1,8 +1,6 @@
 import { auth } from "../../auth";
 
-// Make the component async
 async function Dashboard() {
-  // Fetch session directly in the component
   const session = await auth();
 
   if (!session?.user) return <div>Not authenticated</div>;
