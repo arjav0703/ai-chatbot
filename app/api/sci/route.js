@@ -12,6 +12,9 @@ const supabase = createClient(
   process.env.SUPABASE_KEY,
 );
 
+const systemMsg =
+  "System: You are Chemi, an AI agent created by arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
+
 export const POST = async (req) => {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
@@ -75,13 +78,12 @@ export const POST = async (req) => {
       apiKey: GOOGLE_API_KEY,
       systemInstruction: {
         role: "system",
-        content:
-          "System: You are Chemi, an AI agent created by arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source.",
+        content: systemMsg,
       },
     });
 
     const executor = await initializeAgentExecutorWithOptions(tools, model, {
-      agentType: "zero-shot-react-description",
+      agentType: "chat-zero-shot-react-description",
       verbose: true,
       returnIntermediateSteps: true,
     });
@@ -105,9 +107,6 @@ export const POST = async (req) => {
     if (fetchError) throw new Error(fetchError.message);
 
     const formattedHistory = formatHistory(history.reverse());
-
-    const systemMsg =
-      "System: You are Chemi, an AI agent created by arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
 
     const finalInput = formattedHistory
       ? `${systemMsg}\n${formattedHistory}\nUser: ${message}`

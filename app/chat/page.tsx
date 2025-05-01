@@ -22,17 +22,17 @@ interface Message {
 const WEBHOOK_URLS = [
   {
     id: "english-chat",
-    name: "English Chat",
+    name: "Englisht",
     url: "https://6801f69d1458150c13ad.fra.appwrite.run/webhook",
   },
   {
     id: "science-chat",
-    name: "Science Chat",
-    url: "http://localhost:3000/api/chat",
+    name: "Science",
+    url: "http://localhost:3000/api/sci",
   },
   {
     id: "sst-chat",
-    name: "SST Chat",
+    name: "SST",
     url: "https://68020a29320b98c39ebd.fra.appwrite.run/webhook",
   },
 ];
