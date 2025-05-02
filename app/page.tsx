@@ -47,6 +47,17 @@ export default async function Home() {
                   </Button>
                 </Motiondiv>
               </Link>
+              <Link href="/download">
+                <Motiondiv>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
+                  >
+                    Download
+                  </Button>
+                </Motiondiv>
+              </Link>
             </div>
           </div>
 
@@ -131,13 +142,21 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="text-white">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-white">
           <Motiondiv>
             <Link
               href="/chat"
               className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70"
             >
               Get Started
+            </Link>
+          </Motiondiv>
+          <Motiondiv>
+            <Link
+              href="/download"
+              className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70 hidden lg:flex"
+            >
+              Download
             </Link>
           </Motiondiv>
         </div>
