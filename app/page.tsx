@@ -93,24 +93,14 @@ export default async function Home() {
           CBSE AI
         </h1>
         <div className="flex items-center gap-4">
-          <span className="text-zinc-300">Welcome, {session.user?.name}</span>
           <Motiondiv>
-            <Avatar className="w-12 h-12">
+            <Avatar className="w-8 h-8 lg:w-11 lg:h-11">
               <AvatarImage src={`${session.user?.image}`} />
               <AvatarFallback>
                 {`${session.user?.name?.[0] || ""}${session.user?.name?.[1] || ""}`}
               </AvatarFallback>
             </Avatar>
           </Motiondiv>
-          {/* <form action="/api/auth/signout" method="post">
-            <Button
-              type="submit"
-              variant="outline"
-              className="text-white border-white"
-            >
-              Sign Out
-            </Button>
-          </form> */}
           <form
             action={async () => {
               "use server";
@@ -119,7 +109,7 @@ export default async function Home() {
           >
             <Motiondiv>
               <Button
-                size="lg"
+                size="default"
                 type="submit"
                 variant="outline"
                 className="border-white text-white px-4 py-3 text-lg backdrop-blur-md bg-transparent"
