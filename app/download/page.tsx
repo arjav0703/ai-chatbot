@@ -4,15 +4,17 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import { url } from "node:inspector/promises";
+import { ChevronLeft } from "lucide-react";
 
 const DownloadPage = () => {
   return (
-    <div className="flex flex-col bg-zinc-900 min-h-screen dark color-bg ">
+    <div className="flex flex-col bg-zinc-900 min-h-screen dark color-bg text-zinc-100">
+      <Link href="/">
+        <ChevronLeft size={40} />
+      </Link>
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-3xl">
-          <h2 className="text-3xl font-bold text-white mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
+          <h2 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
             DESKTOP APPLICATION
           </h2>
         </div>
