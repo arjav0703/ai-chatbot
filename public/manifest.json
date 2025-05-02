@@ -1,0 +1,16 @@
+{
+  "name": "CBSE AI",
+  "short_name": "CBSE AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d47a1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ChevronLeft } from "lucide-react";
@@ -20,6 +20,7 @@ const DownloadPage = () => {
         </div>
 
         <div className="mt-15 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl">
+          <InstallButton />
           <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
             <Button
               className="bg-transparent w-fit h-fit"
@@ -83,3 +84,63 @@ const DownloadPage = () => {
 };
 
 export default DownloadPage;
+
+function InstallButton() {
+  const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowButton(true);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler as EventListener);
+
+    return () =>
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handler as EventListener,
+      );
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    // Show the install prompt
+    (deferredPrompt as any).prompt();
+
+    // Wait for the user to respond to the prompt
+    const choiceResult = await (deferredPrompt as any).userChoice;
+
+    if (choiceResult.outcome === "accepted") {
+      console.log("User accepted the install prompt");
+    } else {
+      console.log("User dismissed the install prompt");
+    }
+
+    // Clear the saved prompt
+    setDeferredPrompt(null);
+    setShowButton(false);
+  };
+
+  if (!showButton) return null;
+
+  return (
+    // <button
+    //   onClick={handleInstallClick}
+    //   className="bg-blue-600 text-white px-4 py-2 rounded shadow-md hover:bg-blue-700"
+    // >
+    //   Install App
+    // </button>
+    <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+      <Button
+        className="bg-transparent w-fit h-fit"
+        onClick={handleInstallClick}
+      >
+        <Image src="/debian.svg" alt="Logo" width={50} height={50} />
+      </Button>
+    </div>
+  );
+}
