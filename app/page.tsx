@@ -52,7 +52,7 @@ export default async function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
+                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent hidden lg:flex"
                   >
                     Download
                   </Button>
