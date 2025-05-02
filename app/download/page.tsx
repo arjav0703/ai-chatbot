@@ -15,7 +15,7 @@ const DownloadPage = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-3xl">
           <h2 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
-            DESKTOP APPLICATION
+            CHOOSE YOUR PLATFORM
           </h2>
         </div>
 
@@ -128,18 +128,12 @@ function InstallButton() {
   if (!showButton) return null;
 
   return (
-    // <button
-    //   onClick={handleInstallClick}
-    //   className="bg-blue-600 text-white px-4 py-2 rounded shadow-md hover:bg-blue-700"
-    // >
-    //   Install App
-    // </button>
     <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
       <Button
         className="bg-transparent w-fit h-fit"
         onClick={handleInstallClick}
       >
-        <Image src="/debian.svg" alt="Logo" width={50} height={50} />
+        <Image src="/android.svg" alt="Logo" width={50} height={50} />
       </Button>
     </div>
   );

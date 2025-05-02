@@ -52,7 +52,7 @@ export default async function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent hidden lg:flex"
+                    className="border-white text-white px-8 py-6 text-lg backdrop-blur-md bg-transparent"
                   >
                     Download
                   </Button>
@@ -154,7 +154,7 @@ export default async function Home() {
           <Motiondiv>
             <Link
               href="/download"
-              className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70 hidden lg:flex"
+              className="p-2 border-white border-2 rounded-lg backdrop-blur-md backdrop-brightness-80 hover:backdrop-brightness-70"
             >
               Download
             </Link>
