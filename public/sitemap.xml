@@ -12,4 +12,10 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+        <url>
+        <loc>https://cbseai.vercel.app/download</loc>
+        <lastmod>2025-05-4</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
