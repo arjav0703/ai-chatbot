@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 // import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,15 @@ const subConfig = [
   },
 ];
 
+const pathname = usePathname();
+
+// Function to get the base URL
+const getBaseUrl = () => {
+  if (typeof window !== "undefined") {
+    return window.location.origin;
+  }
+  return "";
+};
 export default function SSTPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -78,7 +88,7 @@ export default function SSTPage() {
         body: JSON.stringify({
           message: userMessage,
           sessionId: sessionId,
-          webhookUrl: "http://localhost:3000/api/gemini",
+          webhookUrl: `${getBaseUrl()}/api/gemini`,
           subject: selectedWebhook.name,
         }),
       });
@@ -216,7 +226,7 @@ export default function SSTPage() {
                     onClick={() => setSelectedWebhook(webhook)}
                     className="hover:bg-zinc-700/50"
                   >
-                    {webhook.name}
+                    {webhook.id}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
