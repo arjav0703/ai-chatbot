@@ -25,8 +25,23 @@ export const POST = async (req) => {
 
   const { GOOGLE_API_KEY, PINECONE_API_KEY, AUTH_SECRET } = process.env;
 
-  const { message, sessionId, authToken } = await req.json();
+  const {
+    message,
+    sessionId,
+    authToken,
+    subject = "science",
+  } = await req.json();
 
+  // Subject handling
+  const config = subjectConfig[subject];
+  if (!config) {
+    return new Response(JSON.stringify({ error: "Invalid subject" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  // err handling
   if (!message || !sessionId) {
     return new Response(
       JSON.stringify({ error: "Missing message or sessionId" }),
@@ -37,6 +52,7 @@ export const POST = async (req) => {
     );
   }
 
+  // auth
   if (authToken !== AUTH_SECRET) {
     return new Response(
       JSON.stringify({ error: "Back off, you ain't authenticated" }),
@@ -50,7 +66,7 @@ export const POST = async (req) => {
   try {
     // === Pinecone Setup ===
     const pinecone = new Pinecone({ apiKey: PINECONE_API_KEY });
-    const pineconeIndex = pinecone.Index("science-9");
+    const pineconeIndex = pinecone.Index(config.pineconeIndex);
 
     const vectorStore = await PineconeStore.fromExistingIndex(
       new GoogleGenerativeAIEmbeddings({
@@ -63,7 +79,7 @@ export const POST = async (req) => {
     // === Tools ===
     const tools = [
       {
-        name: "Science database",
+        name: `${subject} database`,
         description: "Retrieve information to answer user queries.",
         async func(query) {
           const results = await vectorStore.similaritySearch(query, 6);
@@ -98,7 +114,7 @@ export const POST = async (req) => {
         .join("\n");
 
     const { data: history, error: fetchError } = await supabase
-      .from("sci-messages")
+      .from(config.supabaseTable)
       .select("role, content")
       .eq("session_id", sessionId)
       .order("created_at", { ascending: false })
@@ -116,10 +132,12 @@ export const POST = async (req) => {
     const result = await executor.invoke({ input: finalInput });
 
     // === Save to Supabase ===
-    const { error: insertError } = await supabase.from("sci-messages").insert([
-      { session_id: sessionId, role: "user", content: message },
-      { session_id: sessionId, role: "assistant", content: result.output },
-    ]);
+    const { error: insertError } = await supabase
+      .from(config.supabaseTable)
+      .insert([
+        { session_id: sessionId, role: "user", content: message },
+        { session_id: sessionId, role: "assistant", content: result.output },
+      ]);
 
     if (insertError) throw new Error(insertError.message);
 
@@ -142,4 +160,20 @@ export const POST = async (req) => {
       headers: { "Content-Type": "application/json" },
     });
   }
+};
+
+const subjectConfig = {
+  science: {
+    systemMessage:
+      "System: You are Chemi, an AI agent created by Arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.",
+    pineconeIndex: "science-9",
+    supabaseTable: "sci-messages",
+  },
+  math: {
+    systemMessage:
+      "System: You are an AI agent created by Arjav who answers questions related to English. Always answer in detail unless specified not to. Always prefer knowledge from the English database over any other source. If the answer cannot be found in the English Database, tell the user to select other subject through the dropdown menu.",
+    pineconeIndex: "english",
+    supabaseTable: "eng-messages",
+  },
+  // TODO: add sst
 };
