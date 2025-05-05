@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+// import { usePathname, useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 // import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -34,7 +34,7 @@ const subConfig = [
   },
 ];
 
-const pathname = usePathname();
+// const pathname = usePathname();
 
 // Function to get the base URL
 const getBaseUrl = () => {
