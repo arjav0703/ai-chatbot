@@ -121,61 +121,6 @@
     }
 }
 
-#n8n-chat {
-    --chat--color-primary: var(--primary);
-    --chat--color-primary-shade-50: var(--primary);
-    --chat--color-primary-shade-100: #3b902a; /* Almost black */
-    --chat--color-secondary: #000000; /* Dark, neutral gray */
-    --chat--color-secondary-shade-50: #0000ff; /* Slightly lighter gray */
-    --chat--color-white: var(--background); /* Soft off-white */
-    --chat--color-light: var(--primary); /* Very light gray for contrast */
-    --chat--color-light-shade-50: #d4d4d4;
-    --chat--color-light-shade-100: #424242;
-    --chat--color-medium: #0000f2; /* Balanced medium gray */
-    --chat--color-disabled: #686565;
-    --chat--color-typing: #2a2ac2;
-
-    --chat--spacing: 1rem;
-    --chat--border-radius: 1rem;
-    --chat--transition-duration: 0.15s;
-
-    --chat--window--width: fit;
-    --chat--window--height: fit;
-
-    --chat--header-height: auto;
-    --chat--header--padding: var(--chat--spacing);
-    --chat--header--background: var(--primary);
-    --chat--header--color: var(--primary);
-    --chat--header--border-top: none;
-    --chat--header--border-bottom: none;
-    --chat--header--border-bottom: none;
-    --chat--header--border-bottom: none;
-    --chat--heading--font-size: 2rem;
-    --chat--header--color: var(--accent);
-    --chat--subtitle--font-size: inherit;
-    --chat--subtitle--line-height: 1.8;
-
-    --chat--textarea--height: 50px;
-
-    --chat--message--font-size: 1rem;
-    --chat--message--padding: var(--chat--spacing);
-    --chat--message--border-radius: var(--chat--border-radius);
-    --chat--message-line-height: 1.8;
-    --chat--message--bot--background: #353539;
-    --chat--message--bot--color: var(--accent);
-    --chat--message--bot--border: none;
-    --chat--message--user--background: #353539;
-    --chat--message--user--color: var(--muted);
-    --chat--message--user--border: none;
-    --chat--message--pre--background: rgb(255, 6, 6);
-
-    --chat--toggle--background: var(--chat--color-primary);
-    --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
-    --chat--toggle--active--background: var(--chat--color-primary-shade-100);
-    --chat--toggle--color: var(--chat--color-white);
-    --chat--toggle--size: 64px;
-}
-
 @font-face {
     font-family: "Tars-mono";
     src: url("/tarsMono.ttf") format("truetype");
