@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     console.log("Request body:", body);
 
-    // Generate a session ID
+    // only vreated if !present
     const sessionId =
       body.sessionId ||
       `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
@@ -16,7 +16,8 @@ export async function POST(request: Request) {
     const webhookData = {
       message: body.message,
       sessionId: sessionId,
-      authToken: process.env.AUTH_SECRET!,
+      subject: body.subject,
+      authToken: process.env.AUTH_SECRET,
     };
 
     const webhookUrl = body.webhookUrl;

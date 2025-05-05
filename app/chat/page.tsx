@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { Client } from "appwrite";
 // import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ChatNav from "@/components/ChatNav";
@@ -19,28 +18,20 @@ interface Message {
   timestamp: string;
 }
 
-const WEBHOOK_URLS = [
+const subConfig = [
   {
-    id: "english-chat",
-    name: "English Chat",
-    url: "https://6801f69d1458150c13ad.fra.appwrite.run/webhook",
+    id: "English",
+    name: "english",
   },
   {
-    id: "science-chat",
-    name: "Science Chat",
-    url: "https://68020a0580f1c7233808.fra.appwrite.run/webhook",
+    id: "Science",
+    name: "science",
   },
   {
-    id: "sst-chat",
-    name: "SST Chat",
-    url: "https://68020a29320b98c39ebd.fra.appwrite.run/webhook",
+    id: "SST",
+    name: "sst",
   },
 ];
-
-const client = new Client();
-client
-  .setEndpoint("https://fra.cloud.appwrite.io/v1")
-  .setProject("6801f59d003a67ca5e6e");
 
 export default function SSTPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -48,7 +39,7 @@ export default function SSTPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string>("");
-  const [selectedWebhook, setSelectedWebhook] = useState(WEBHOOK_URLS[0]);
+  const [selectedWebhook, setSelectedWebhook] = useState(subConfig[0]);
 
   useEffect(() => {
     localStorage.removeItem("chat_session_id");
@@ -87,7 +78,8 @@ export default function SSTPage() {
         body: JSON.stringify({
           message: userMessage,
           sessionId: sessionId,
-          webhookUrl: selectedWebhook.url,
+          webhookUrl: "http://localhost:3000/api/gemini",
+          subject: selectedWebhook.name,
         }),
       });
 
@@ -99,7 +91,7 @@ export default function SSTPage() {
 
       if (data.sessionId && data.sessionId !== sessionId) {
         setSessionId(data.sessionId);
-        localStorage.setItem("sst_chat_session_id", data.sessionId);
+        localStorage.setItem("chat_session_id", data.sessionId);
       }
 
       const responseContent =
@@ -218,7 +210,7 @@ export default function SSTPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-zinc-800 text-white border border-zinc-700">
-                {WEBHOOK_URLS.map((webhook) => (
+                {subConfig.map((webhook) => (
                   <DropdownMenuItem
                     key={webhook.id}
                     onClick={() => setSelectedWebhook(webhook)}
