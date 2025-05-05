@@ -20,8 +20,9 @@ const DownloadPage = () => {
         </div>
 
         <div className="mt-15 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl">
-          <InstallButton />
-          <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+          <InstallButton os="android" />
+          <InstallButton os="ios" />
+          <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
             <Button
               className="bg-transparent w-fit h-fit"
               onClick={() => {
@@ -31,10 +32,10 @@ const DownloadPage = () => {
                 );
               }}
             >
-              <Image src="/linux.svg" alt="Logo" width={50} height={50} />
+              <Image src="/linux.svg" alt="Linux Logo" width={50} height={50} />
             </Button>
           </div>
-          <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+          <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm ">
             <Button
               className="bg-transparent w-fit h-fit"
               onClick={() => {
@@ -44,10 +45,15 @@ const DownloadPage = () => {
                 );
               }}
             >
-              <Image src="/debian.svg" alt="Logo" width={50} height={50} />
+              <Image
+                src="/debian.svg"
+                alt="Debian Logo"
+                width={50}
+                height={50}
+              />
             </Button>
           </div>
-          <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+          <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
             <Button
               className="bg-transparent w-fit h-fit"
               onClick={() => {
@@ -57,10 +63,15 @@ const DownloadPage = () => {
                 );
               }}
             >
-              <Image src="/windows.svg" alt="Logo" width={50} height={50} />
+              <Image
+                src="/windows.svg"
+                alt="Windows Logo"
+                width={50}
+                height={50}
+              />
             </Button>
           </div>
-          <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+          <div className="bg-white border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
             <Button
               className="bg-transparent w-fit h-fit"
               onClick={() => {
@@ -70,7 +81,7 @@ const DownloadPage = () => {
                 );
               }}
             >
-              <Image src="/apple.svg" alt="Logo" width={50} height={50} />
+              <Image src="/macos.svg" alt="MacOS Logo" width={50} height={50} />
             </Button>
           </div>
         </div>
@@ -85,7 +96,7 @@ const DownloadPage = () => {
 
 export default DownloadPage;
 
-function InstallButton() {
+function InstallButton({ os }: { os: "android" | "ios" }) {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
   const [showButton, setShowButton] = useState(false);
 
@@ -128,12 +139,12 @@ function InstallButton() {
   if (!showButton) return null;
 
   return (
-    <div className="bg-zinc-300 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+    <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
       <Button
         className="bg-transparent w-fit h-fit"
         onClick={handleInstallClick}
       >
-        <Image src="/android.svg" alt="Logo" width={50} height={50} />
+        <Image src={`/${os}.svg`} alt={`${os} Logo`} width={50} height={50} />
       </Button>
     </div>
   );
