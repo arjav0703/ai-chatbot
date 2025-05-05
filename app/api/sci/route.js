@@ -1,3 +1,5 @@
+// For the nerds who are curious why i did not use Typescript in this particiular file: See, TSC is great and all, but I really don't want to mess this code up and this is just a temporary solution because I am too lazy to deploy the backend in Python and I didnt want to bother with TSC for this particular reason
+
 import {
   ChatGoogleGenerativeAI,
   GoogleGenerativeAIEmbeddings,
@@ -12,8 +14,8 @@ const supabase = createClient(
   process.env.SUPABASE_KEY,
 );
 
-const systemMsg =
-  "System: You are Chemi, an AI agent created by Arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
+// const systemMsg =
+//   "System: You are Chemi, an AI agent created by Arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
 
 export const POST = async (req) => {
   if (req.method !== "POST") {
@@ -98,7 +100,7 @@ export const POST = async (req) => {
     const executor = await initializeAgentExecutorWithOptions(tools, model, {
       agentType: "chat-zero-shot-react-description",
       agentArgs: {
-        prefix: systemMsg,
+        prefix: config.systemMessage,
       },
       verbose: true,
       returnIntermediateSteps: true,
