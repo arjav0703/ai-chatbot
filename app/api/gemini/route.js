@@ -33,14 +33,17 @@ export const POST = async (req) => {
     subject = "science",
     longans = false,
   } = await req.json();
-
-  if (longans) {
-    message += "Answer with as much detail as possible detail.";
-  } else {
-    message += "Answer in a concise manner.";
-  }
-  // Subject handling
   const config = subjectConfig[subject];
+
+  // Long answer handling
+  let SysMessage = config.systemMessage;
+  if (longans) {
+    SysMessage += " Answer in as much detail as possible.";
+  } else {
+    SysMessage += " Answer in a concise manner.";
+  }
+
+  // Subject handling
   if (!config) {
     return new Response(JSON.stringify({ error: "Invalid subject" }), {
       status: 400,
@@ -105,7 +108,7 @@ export const POST = async (req) => {
     const executor = await initializeAgentExecutorWithOptions(tools, model, {
       agentType: "chat-zero-shot-react-description",
       agentArgs: {
-        prefix: config.systemMessage,
+        prefix: SysMessage,
       },
       verbose: true,
       returnIntermediateSteps: true,
