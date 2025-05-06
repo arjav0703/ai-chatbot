@@ -1,4 +1,5 @@
 <img src="https://cbseai.live/icon.png" class="logo" width="120"/>
+
 # CBSE AI
 
 Your AI-powered study companion for CBSE Class 9 and 10 students in India.
