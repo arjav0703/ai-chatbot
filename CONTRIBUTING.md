@@ -63,4 +63,4 @@ Here are a series of GIFs that illustrate how to make and commit a change, and c
 
 ![Make a pull request](https://cloud-agvs502ft.vercel.app/3pr4.gif)
 
-This contribution guide was heavily inspired by [Hackclub's Contribution Guidelines](https://github.com/hackclub/hackclub/blob/main/CONTRIBUTING.md)
+This contribution guide was adopted by [Hackclub's Contribution Guidelines](https://github.com/hackclub/hackclub/blob/main/CONTRIBUTING.md)
