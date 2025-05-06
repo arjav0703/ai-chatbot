@@ -94,7 +94,7 @@ CBSE AI uses Auth.js with Google OAuth for secure, simple sign-in. You must set 
 
 ---
 
-## Contributing
+## 🌈 Contributing
 
 Contributions are welcome! Please open issues or submit pull requests to help improve the project.
 
