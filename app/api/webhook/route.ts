@@ -17,6 +17,7 @@ export async function POST(request: Request) {
       message: body.message,
       sessionId: sessionId,
       subject: body.subject,
+      longans: body.longans,
       authToken: process.env.AUTH_SECRET,
     };
 

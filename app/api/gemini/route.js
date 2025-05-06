@@ -8,15 +8,13 @@ import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "@langchain/community/vectorstores/pinecone";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { createClient } from "@supabase/supabase-js";
+
 import subjectConfig from "./config.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY,
 );
-
-// const systemMsg =
-//   "System: You are Chemi, an AI agent created by Arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
 
 export const POST = async (req) => {
   if (req.method !== "POST") {
@@ -33,10 +31,19 @@ export const POST = async (req) => {
     sessionId,
     authToken,
     subject = "science",
+    longans = false,
   } = await req.json();
+  const config = subjectConfig[subject];
+
+  // Long answer handling
+  let SysMessage = config.systemMessage;
+  if (longans) {
+    SysMessage += " Answer in as much detail as possible.";
+  } else {
+    SysMessage += " Answer in a concise manner.";
+  }
 
   // Subject handling
-  const config = subjectConfig[subject];
   if (!config) {
     return new Response(JSON.stringify({ error: "Invalid subject" }), {
       status: 400,
@@ -101,7 +108,7 @@ export const POST = async (req) => {
     const executor = await initializeAgentExecutorWithOptions(tools, model, {
       agentType: "chat-zero-shot-react-description",
       agentArgs: {
-        prefix: config.systemMessage,
+        prefix: SysMessage,
       },
       verbose: true,
       returnIntermediateSteps: true,

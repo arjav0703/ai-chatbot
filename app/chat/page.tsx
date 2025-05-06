@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Loader2 } from "lucide-react";
+import { ToggleSlider } from "react-toggle-slider";
 
 interface Message {
   role: "user" | "assistant";
@@ -34,8 +35,6 @@ const subConfig = [
   },
 ];
 
-// const pathname = usePathname();
-
 // Function to get the base URL
 const getBaseUrl = () => {
   if (typeof window !== "undefined") {
@@ -50,6 +49,7 @@ export default function SSTPage() {
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string>("");
   const [selectedWebhook, setSelectedWebhook] = useState(subConfig[0]);
+  const [isLongAnswer, setIsLongAnswer] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem("chat_session_id");
@@ -90,6 +90,7 @@ export default function SSTPage() {
           sessionId: sessionId,
           webhookUrl: `${getBaseUrl()}/api/gemini`,
           subject: selectedWebhook.name,
+          longans: isLongAnswer,
         }),
       });
 
@@ -193,6 +194,13 @@ export default function SSTPage() {
           </div>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+          <div className="flex self-end gap-2">
+            <p>Long Answer</p>
+            <ToggleSlider
+              onToggle={setIsLongAnswer}
+              barBackgroundColorActive="#789a30"
+            />
+          </div>
           <div className="relative">
             <textarea
               value={input}
@@ -216,7 +224,7 @@ export default function SSTPage() {
                   variant="outline"
                   className="rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50"
                 >
-                  {selectedWebhook.name} <ChevronDown className="w-4 h-4" />
+                  {selectedWebhook.id} <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-zinc-800 text-white border border-zinc-700">
