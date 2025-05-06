@@ -1,4 +1,4 @@
-<img src="https://cbseai.live/icon.png" class="logo" width="120"/>
+<img src="https://cbseai.live/og.png" class="logo" width="300"/>
 
 # CBSE AI
 
