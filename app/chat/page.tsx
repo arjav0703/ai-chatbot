@@ -34,8 +34,6 @@ const subConfig = [
   },
 ];
 
-// const pathname = usePathname();
-
 // Function to get the base URL
 const getBaseUrl = () => {
   if (typeof window !== "undefined") {
@@ -216,7 +214,7 @@ export default function SSTPage() {
                   variant="outline"
                   className="rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50"
                 >
-                  {selectedWebhook.name} <ChevronDown className="w-4 h-4" />
+                  {selectedWebhook.id} <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-zinc-800 text-white border border-zinc-700">
