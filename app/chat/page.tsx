@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Loader2 } from "lucide-react";
+import { ToggleSlider } from "react-toggle-slider";
 
 interface Message {
   role: "user" | "assistant";
@@ -48,6 +49,7 @@ export default function SSTPage() {
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string>("");
   const [selectedWebhook, setSelectedWebhook] = useState(subConfig[0]);
+  const [isLongAnswer, setIsLongAnswer] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem("chat_session_id");
@@ -88,6 +90,7 @@ export default function SSTPage() {
           sessionId: sessionId,
           webhookUrl: `${getBaseUrl()}/api/gemini`,
           subject: selectedWebhook.name,
+          longans: isLongAnswer,
         }),
       });
 
@@ -191,6 +194,10 @@ export default function SSTPage() {
           </div>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+          <div className="flex self-end gap-2">
+            <p>Long Answer</p>
+            <ToggleSlider onToggle={setIsLongAnswer} />
+          </div>
           <div className="relative">
             <textarea
               value={input}
