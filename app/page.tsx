@@ -72,14 +72,6 @@ export default async function Home() {
             </div>
             <div className="bg-zinc-800/30 backdrop-blur-sm border-1 border-zinc-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-white mb-3">
-                Personalized Learning
-              </h3>
-              <p className="text-zinc-50">
-                Adapts to your learning style and pace for better understanding.
-              </p>
-            </div>
-            <div className="bg-zinc-800/30 backdrop-blur-sm border-1 border-zinc-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-white mb-3">
                 24/7 Availability
               </h3>
               <p className="text-zinc-50">
