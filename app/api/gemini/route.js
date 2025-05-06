@@ -8,15 +8,13 @@ import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "@langchain/community/vectorstores/pinecone";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { createClient } from "@supabase/supabase-js";
+
 import subjectConfig from "./config.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY,
 );
-
-// const systemMsg =
-//   "System: You are Chemi, an AI agent created by Arjav who answers questions related to science. Always answer in detail. Always prefer knowledge from the Science database over any other source. If the answer cannot be found in the Science Database, tell the user to select other subject through the dropdown menu.";
 
 export const POST = async (req) => {
   if (req.method !== "POST") {
@@ -33,8 +31,14 @@ export const POST = async (req) => {
     sessionId,
     authToken,
     subject = "science",
+    longans = false,
   } = await req.json();
 
+  if (longans) {
+    message += "Answer with as much detail as possible detail.";
+  } else {
+    message += "Answer in a concise manner.";
+  }
   // Subject handling
   const config = subjectConfig[subject];
   if (!config) {
