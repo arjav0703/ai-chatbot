@@ -18,8 +18,7 @@ CBSE AI is designed to help students of CBSE Class 9 and 10 get instant, reliabl
 
 - ⚡ **Instant Answers:** Get immediate, accurate responses to your questions across all CBSE subjects[^1].
 - 🌙 **24/7 Availability:** Access your study companion whenever you need help — day or night[^1].
-- 🔐 **Secure Authentication:** Sign in securely with Google using Auth.js and OAuth2.
-- 🚀 **Modern Tech Stack:** Built with Next.js and LangChain.js for a fast, interactive, and scalable experience.
+- 🚀 **Optimization at its peak:** Built with Next.js and LangChain.js for a fast, interactive, and scalable experience.
 
 ---
 
@@ -34,6 +33,30 @@ CBSE AI is designed to help students of CBSE Class 9 and 10 get instant, reliabl
 | 🧭 Vector DB      | [Pinecone](https://www.pinecone.io) |
 | 🤖 AI Model       | [Gemini](https://gemini.google.com/) |
 ---
+
+## 🧭 Architecture Diagram
+
+```text
++---------+       +----------------+       +-------------+
+| Browser | <---> | Next.js Server | <---> | LangChain.js|
++----+----+       +--------+-------+       +------+------+
+     |                     |                      |
+     |     Auth.js +       |                      |
+     |  Google OAuth2      |                      |
+     |                     |                      |
+     |             +-------v-------+       +------v------+
+     |             |    Gemini     | <---> |  Pinecone   |
+     |             +---------------+       +-------------+
+```
+
+## 🗂️ Project Structure
+app/ – Next.js application routes, layouts, and pages
+
+app/page.tsx – Main chat interface
+
+app/api/chat/route.ts – API route for handling chat and AI logic
+
+components/ – UI components from shadcn/ui
 
 ## 🏁 Getting Started
 
