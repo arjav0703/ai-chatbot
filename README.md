@@ -25,11 +25,14 @@ CBSE AI is designed to help students of CBSE Class 9 and 10 get instant, reliabl
 
 ## 🛠️ Tech Stack
 
-- **🖥️ Frontend & Backend:** [Next.js](https://nextjs.org/) (A full stack Javascript framework)
-- **🧩 AI Orchestration:** [LangChain.js](https://js.langchain.com/)
-- **🔒 Authentication:** [Auth.js](https://authjs.dev/) with Google OAuth2
-- **☁️ Deployment:** [Vercel](https://vercel.com/)
-
+| Layer             | Technology Used                   |
+|------------------|-----------------------------------|
+| 🌐 Frontend      | [Next.js](https://nextjs.org/)    |
+| 🧠 AI Logic       | [LangChain.js](https://js.langchain.com/) |
+| 🔐 Auth           | [Auth.js](https://authjs.dev/) with Google OAuth |
+| 📦 Deployment     | [Vercel](https://vercel.com/)     |
+| 🧭 Vector DB      | [Pinecone](https://www.pinecone.io) |
+| 🤖 AI Model       | [Gemini](https://gemini.google.com/) |
 ---
 
 ## 🏁 Getting Started
