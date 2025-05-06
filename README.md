@@ -48,6 +48,11 @@ CBSE AI is designed to help students of CBSE Class 9 and 10 get instant, reliabl
      |             |    Gemini     | <---> |  Pinecone   |
      |             +---------------+       +-------------+
 ```
+## ⚙️ How It Works?
+💬 Frontend: Users interact with a chat interface built with React to submit questions.
+
+🧠 Backend: Questions are processed via LangChain.js, which orchestrates calls to the Gemini API and returns structured, relevant answers by utilizing a vector database called Pinecone.
+
 
 ## 🗂️ Project Structure
 app/api/ – Backend Stuff
