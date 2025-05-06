@@ -196,7 +196,10 @@ export default function SSTPage() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
           <div className="flex self-end gap-2">
             <p>Long Answer</p>
-            <ToggleSlider onToggle={setIsLongAnswer} />
+            <ToggleSlider
+              onToggle={setIsLongAnswer}
+              barBackgroundColorActive="#789a30"
+            />
           </div>
           <div className="relative">
             <textarea
