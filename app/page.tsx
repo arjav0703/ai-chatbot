@@ -61,7 +61,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full ">
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full ">
             <div className="bg-zinc-800/30 border-1 border-zinc-100 p-6 rounded-lg backdrop-blur-sm">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Instant Answers
