@@ -50,11 +50,11 @@ CBSE AI is designed to help students of CBSE Class 9 and 10 get instant, reliabl
 ```
 
 ## 🗂️ Project Structure
-app/ – Next.js application routes, layouts, and pages
-
-app/page.tsx – Main chat interface
+app/api/ – Backend Stuff
 
 app/api/chat/route.ts – API route for handling chat and AI logic
+
+app/chat/page.tsx – Main chat interface (frontend)
 
 components/ – UI components from shadcn/ui
 
