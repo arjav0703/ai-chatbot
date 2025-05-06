@@ -87,7 +87,6 @@ export default async function Home() {
               </p>
             </div>
           </div>
-          <DeveloperNote />
         </main>
 
         <footer className="p-6 text-center text-zinc-200 text-sm">
