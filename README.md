@@ -90,7 +90,7 @@ CBSE AI uses Auth.js with Google OAuth for secure, simple sign-in. You must set 
 
 - **Frontend:** Users interact with a chat interface built with React to submit questions.
 - **Backend:** Questions are processed via LangChain.js, which orchestrates calls to the Gemini API and returns structured, relevant answers by utilizing a vector database called [Pinecone](https://pinecone.io).
-- **Authentication:** Auth.js manages user sessions and Google OAuth integration for secure access[^5][^10][^11].
+- **Authentication:** Auth.js manages user sessions and Google OAuth integration for secure access.
 
 ---
 
