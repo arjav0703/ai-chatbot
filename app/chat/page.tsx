@@ -13,6 +13,8 @@ import { Loader2 } from "lucide-react";
 import { ToggleSlider } from "react-toggle-slider";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+// import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
 
 interface Message {
   role: "user" | "assistant";
@@ -147,13 +149,7 @@ export default function SSTPage() {
     }
   };
 
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    fetch("/api/auth/session")
-      .then((res) => res.json())
-      .then((data) => setSession(data));
-  }, []);
+  const { data: session } = useSession();
 
   // if (!session) return <div>Loading...</div>;
 
