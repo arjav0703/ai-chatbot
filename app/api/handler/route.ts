@@ -1,44 +1,45 @@
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  console.log("Webhook request received");
+  console.log("Handler: request received");
 
   try {
     const body = await request.json();
-    console.log("Request body:", body);
+    console.log("Handler: Request body:", body);
 
     // only vreated if !present
     const sessionId =
       body.sessionId ||
       `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
-    // Webhook data
-    const webhookData = {
+    // request data
+    const reqData = {
       message: body.message,
       sessionId: sessionId,
       subject: body.subject,
       longans: body.longans,
+      userid: body.userid,
       authToken: process.env.AUTH_SECRET,
     };
 
-    const webhookUrl = body.webhookUrl;
+    const reqURL = body.reqURL;
 
-    console.log("Sending webhook request to:", webhookUrl);
-    console.log("Webhook data:", webhookData);
+    console.log("Handler: Sending request to => ", reqURL);
+    console.log("Handler: Request data => ", reqData);
 
-    const response = await fetch(webhookUrl, {
+    const response = await fetch(reqURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(webhookData),
+      body: JSON.stringify(reqData),
     });
 
-    console.log("Webhook response status:", response.status);
+    console.log("Handler: Response status => ", response.status);
 
     // Handle response more robustly
-    let responseData;
+    let responseData: any = {};
     let rawResponse = "";
 
     try {
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
       // Trim whitespace which might cause issues
       rawResponse = rawResponse.trim();
 
-      console.log("Raw response length:", rawResponse.length);
+      console.log("Handler: Raw response length:", rawResponse.length);
 
       // Only try to parse if there's actual content
       if (rawResponse) {
@@ -71,7 +72,7 @@ export async function POST(request: Request) {
           responseData = JSON.parse(rawResponse);
         } catch (parseError) {
           console.warn(
-            "Failed to parse as JSON, treating as text:",
+            "Handler: Failed to parse as JSON, treating as text:",
             parseError,
           );
           responseData = { message: rawResponse };
@@ -80,8 +81,8 @@ export async function POST(request: Request) {
         responseData = {};
       }
     } catch (e) {
-      console.error("Error handling response:", e);
-      responseData = { error: "Failed to process response" };
+      console.error("Handler: Error handling response:", e);
+      responseData = { error: "Handler: Failed to process response" };
     }
 
     // Process the response data
@@ -108,14 +109,14 @@ export async function POST(request: Request) {
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Webhook error:", error);
+    console.error("Handler error:", error);
     return NextResponse.json(
       {
         success: false,
         error:
           error instanceof Error
             ? error.message
-            : "Failed to send webhook request",
+            : "Handler: Failed to send request",
         timestamp: new Date().toISOString(),
       },
       { status: 500 },
