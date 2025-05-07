@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Loader2 } from "lucide-react";
 import { ToggleSlider } from "react-toggle-slider";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 interface Message {
   role: "user" | "assistant";
@@ -239,14 +241,23 @@ export default function SSTPage() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            // TODO: Implement Redirect
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
-            >
-              {isLoading ? <Loader2 className="animate-spin" /> : "Send"}
-            </Button>
+            {session && (
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
+              >
+                {isLoading ? <Loader2 className="animate-spin" /> : "Send"}
+              </Button>
+            )}
+            {!session && (
+              <Link
+                href="/login"
+                className="flex px-3 py-1.5 items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
         </form>
       </section>
