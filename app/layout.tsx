@@ -48,8 +48,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
         <GoogleAnalytics gaId="G-G4H0DPQRG9" />
+        {children}
       </body>
     </html>
   );
