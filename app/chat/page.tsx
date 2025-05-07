@@ -224,7 +224,7 @@ export default function SSTPage() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50"
+                  className="rounded-lg bg-zinc-800/50 text-white hover:text-white border border-zinc-700 hover:bg-zinc-700/50"
                 >
                   {selectedWebhook.id} <ChevronDown className="w-4 h-4" />
                 </Button>
