@@ -70,7 +70,7 @@ components/ – UI components from shadcn/ui
 - [📦 Node.js](https://nodejs.org/en/download) (v20+ recommended)
 - 🧑‍💻 A code editor ([Zed](https://zed.dev) recommended)
 
-### ⚙️ Installation
+### ⚙️ Installation (For Unix-like OS like GNU/Linux, MacOS, etc.)
 
 1. **📥 Clone the repository:**
 
@@ -91,5 +91,11 @@ Create a `.env.local` file in the root directory and add your environment variab
 ```bash
 npm run dev
 ```
+#### OR
+**🚀 Start the production server:**
+```bash
+npm run build && npm run start
+```
 5. **🌐 Open your browser:**
 `http://localhost:3000`
+---
