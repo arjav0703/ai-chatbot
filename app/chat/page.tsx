@@ -150,7 +150,7 @@ export default function SSTPage() {
       .then((data) => setSession(data));
   }, []);
 
-  if (!session) return <div>Loading...</div>;
+  // if (!session) return <div>Loading...</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
@@ -239,7 +239,7 @@ export default function SSTPage() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-
+            // TODO: Implement Redirect
             <Button
               type="submit"
               disabled={isLoading}
