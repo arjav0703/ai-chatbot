@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Loader2 } from "lucide-react";
 import { ToggleSlider } from "react-toggle-slider";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 interface Message {
   role: "user" | "assistant";
@@ -150,7 +152,7 @@ export default function SSTPage() {
       .then((data) => setSession(data));
   }, []);
 
-  if (!session) return <div>Loading...</div>;
+  // if (!session) return <div>Loading...</div>;
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
@@ -222,7 +224,7 @@ export default function SSTPage() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50"
+                  className="rounded-lg bg-zinc-800/50 text-white hover:text-white border border-zinc-700 hover:bg-zinc-700/50"
                 >
                   {selectedWebhook.id} <ChevronDown className="w-4 h-4" />
                 </Button>
@@ -239,14 +241,23 @@ export default function SSTPage() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
-            >
-              {isLoading ? <Loader2 className="animate-spin" /> : "Send"}
-            </Button>
+            {session && (
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
+              >
+                {isLoading ? <Loader2 className="animate-spin" /> : "Send"}
+              </Button>
+            )}
+            {!session && (
+              <Link
+                href="/login"
+                className="flex px-3 py-1.5 items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
         </form>
       </section>

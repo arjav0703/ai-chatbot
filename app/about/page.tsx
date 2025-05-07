@@ -57,15 +57,15 @@ export default function AboutPage() {
             exploring the power of AI-assisted education.
           </p>
           <p>
-            <strong>NOTE:</strong>CBSE AI is not at all related to CBSE (Central
-            Board of Secondary Education).
+            <strong>NOTE: </strong>CBSE AI is not at all related to CBSE
+            (Central Board of Secondary Education).
           </p>
 
           <div className="mt-8">
             <Link href="/login">
               <Button
                 size="lg"
-                className="border-white text-white px-4 py-3 text-lg backdrop-blur-md bg-transparent"
+                className="border-white text-white px-4 py-3 text-lg backdrop-blur-md bg-transparent hover:text-black"
               >
                 Sign Up Now
               </Button>

@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import DeveloperNote from "@/components/DeveloperNote";
 import Myheader from "@/components/MyHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Motiondiv from "@/components/motion/div";
@@ -157,8 +156,6 @@ export default async function Home() {
             </Motiondiv>
           </Link>
         </div>
-
-        <DeveloperNote />
       </main>
 
       <footer className="p-6 text-center text-zinc-200 text-sm">
