@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     console.log("Handler: Sending request to => ", reqURL);
     console.log("Handler: Request data => ", reqData);
 
-    const response = await fetch(reqURL, {
+    const response = await fetch("http://localhost:3000/api/gemini", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

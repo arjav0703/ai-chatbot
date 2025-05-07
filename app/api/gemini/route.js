@@ -158,7 +158,7 @@ export const POST = async (req) => {
           role: "assistant",
           content: result.output,
           created_at: new Date(),
-          userid: userid,
+          user_id: userid,
         },
       ]);
 
