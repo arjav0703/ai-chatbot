@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-// import { usePathname, useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-// import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import ChatNav from "@/components/ChatNav";
 import {
@@ -13,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Loader2 } from "lucide-react";
 import { ToggleSlider } from "react-toggle-slider";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 interface Message {
