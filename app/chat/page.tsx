@@ -16,27 +16,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import SubSelector from "@/components/SubSelector";
+import subConfig from "@/lib/subConfig";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
   timestamp: string;
 }
-
-const subConfig = [
-  {
-    id: "English",
-    name: "english",
-  },
-  {
-    id: "Science",
-    name: "science",
-  },
-  {
-    id: "SST",
-    name: "sst",
-  },
-];
 
 // Function to get the base URL
 const getBaseUrl = () => {

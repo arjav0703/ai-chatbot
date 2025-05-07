@@ -6,21 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-
-const subConfig = [
-  {
-    id: "English",
-    name: "english",
-  },
-  {
-    id: "Science",
-    name: "science",
-  },
-  {
-    id: "SST",
-    name: "sst",
-  },
-];
+import subConfig from "@/lib/subConfig";
 
 function SubSelector({
   selectedWebhook,
