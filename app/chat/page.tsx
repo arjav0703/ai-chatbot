@@ -44,6 +44,7 @@ const getBaseUrl = () => {
   }
   return "";
 };
+
 export default function SSTPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -87,7 +88,7 @@ export default function SSTPage() {
     ]);
 
     try {
-      const response = await fetch("/api/webhook", {
+      const response = await fetch("/api/handler", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,9 +96,10 @@ export default function SSTPage() {
         body: JSON.stringify({
           message: userMessage,
           sessionId: sessionId,
-          webhookUrl: `${getBaseUrl()}/api/gemini`,
+          reqUrl: `${getBaseUrl()}/api/gemini`,
           subject: selectedWebhook.name,
           longans: isLongAnswer,
+          userid: session.user.id,
         }),
       });
 
@@ -149,6 +151,7 @@ export default function SSTPage() {
     }
   };
 
+  // Authentication
   const { data: session } = useSession();
   if (!session) {
     console.error("Session Variable is not set");
