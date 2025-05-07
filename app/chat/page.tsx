@@ -45,7 +45,7 @@ const getBaseUrl = () => {
   return "";
 };
 
-export default function SSTPage() {
+export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -56,9 +56,7 @@ export default function SSTPage() {
 
   useEffect(() => {
     localStorage.removeItem("chat_session_id");
-    const newSessionId = `session_${Date.now()}_${Math.random()
-      .toString(36)
-      .substring(2, 9)}`;
+    const newSessionId = `session_${Date.now()}_${Math.random()}`;
     setSessionId(newSessionId);
     localStorage.setItem("chat_session_id", newSessionId);
   }, []);
@@ -99,7 +97,7 @@ export default function SSTPage() {
           reqUrl: `${getBaseUrl()}/api/gemini`,
           subject: selectedWebhook.name,
           longans: isLongAnswer,
-          userid: session.user.id,
+          userid: session.user.email,
         }),
       });
 
@@ -153,10 +151,8 @@ export default function SSTPage() {
 
   // Authentication
   const { data: session } = useSession();
-  if (!session) {
-    console.error("Session Variable is not set");
-  } else {
-    console.log(`session = ${session}`);
+  if (session) {
+    console.log(session.expires);
   }
 
   return (
