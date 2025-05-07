@@ -12,6 +12,7 @@ import {
 import { Loader2 } from "lucide-react";
 import { ToggleSlider } from "react-toggle-slider";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface Message {
   role: "user" | "assistant";
@@ -62,6 +63,11 @@ export default function SSTPage() {
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     if (!input.trim() || isLoading) return;
+
+    if (!session) {
+      setError("You must be signed in to send a message.");
+      redirect("/login");
+    }
 
     const userMessage = input.trim();
     const timestamp = new Date().toISOString();
