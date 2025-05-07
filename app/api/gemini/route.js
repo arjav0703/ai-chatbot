@@ -32,6 +32,7 @@ export const POST = async (req) => {
     authToken,
     subject = "science",
     longans = false,
+    userid,
   } = await req.json();
   const config = subjectConfig[subject];
 
@@ -145,8 +146,20 @@ export const POST = async (req) => {
     const { error: insertError } = await supabase
       .from(config.supabaseTable)
       .insert([
-        { session_id: sessionId, role: "user", content: message },
-        { session_id: sessionId, role: "assistant", content: result.output },
+        {
+          session_id: sessionId,
+          role: "user",
+          content: message,
+          created_at: new Date(),
+          user_id: userid,
+        },
+        {
+          session_id: sessionId,
+          role: "assistant",
+          content: result.output,
+          created_at: new Date(),
+          userid: userid,
+        },
       ]);
 
     if (insertError) throw new Error(insertError.message);
