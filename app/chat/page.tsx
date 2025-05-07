@@ -4,17 +4,18 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ChatNav from "@/components/ChatNav";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Loader2 } from "lucide-react";
 import { ToggleSlider } from "react-toggle-slider";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-// import { auth } from "@/auth";
 import { useSession } from "next-auth/react";
+import SubSelector from "@/components/SubSelector";
 
 interface Message {
   role: "user" | "assistant";
@@ -51,9 +52,16 @@ export default function Chat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string>("");
-  const [selectedWebhook, setSelectedWebhook] = useState(subConfig[0]);
+  const [selectedWebhook, setSelectedWebhook] = useState(subConfig[1]);
   const [isLongAnswer, setIsLongAnswer] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
+  // Dialog state
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  // session ID
   useEffect(() => {
     localStorage.removeItem("chat_session_id");
     const newSessionId = `session_${Date.now()}_${Math.random()}`;
@@ -61,6 +69,7 @@ export default function Chat() {
     localStorage.setItem("chat_session_id", newSessionId);
   }, []);
 
+  // form submission
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -157,6 +166,21 @@ export default function Chat() {
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
+      <div className="dark">
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="dark">
+            <DialogHeader className="gap-8 items-center p-0">
+              <DialogTitle className="text-white">Select Subject</DialogTitle>
+              <DialogDescription>
+                <SubSelector
+                  selectedWebhook={selectedWebhook}
+                  setSelectedWebhook={setSelectedWebhook}
+                />
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
       <section className="max-w-6xl h-full flex flex-col mx-auto">
         <div className="flex gap-4 dark">
           <ChatNav />
@@ -220,28 +244,10 @@ export default function Chat() {
           </div>
 
           <div className="flex items-center justify-end gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="rounded-lg bg-zinc-800/50 text-white hover:text-white border border-zinc-700 hover:bg-zinc-700/50"
-                >
-                  {selectedWebhook.id} <ChevronDown className="w-4 h-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-zinc-800 text-white border border-zinc-700">
-                {subConfig.map((webhook) => (
-                  <DropdownMenuItem
-                    key={webhook.id}
-                    onClick={() => setSelectedWebhook(webhook)}
-                    className="hover:bg-zinc-700/50"
-                  >
-                    {webhook.id}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <SubSelector
+              selectedWebhook={selectedWebhook}
+              setSelectedWebhook={setSelectedWebhook}
+            />
             {session && (
               <Button
                 type="submit"
