@@ -75,5 +75,5 @@ components/ – UI components from shadcn/ui
 1. **📥 Clone the repository:**
 
 ```bash
-git clone https://github.com/your-org/cbse-ai-assistant.git
+git clone https://github.com/arjav0703/cbse-ai.git
 cd cbse-ai-assistant
