@@ -150,8 +150,7 @@ export default function SSTPage() {
   };
 
   const { data: session } = useSession();
-
-  // if (!session) return <div>Loading...</div>;
+  if (!session) { console.error("Session Variable is not set") } else {console.log(`session = ${session}`)
 
   return (
     <div className="w-screen p-4 h-screen bg-primary text-white">
