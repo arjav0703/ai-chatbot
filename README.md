@@ -77,3 +77,18 @@ components/ – UI components from shadcn/ui
 ```bash
 git clone https://github.com/arjav0703/cbse-ai.git
 cd cbse-ai
+```
+2. **📦 Install dependencies:**
+
+```bash
+npm install
+```
+3. **🔑 Set up environment variables:**
+Create a `.env.local` file in the root directory and add your environment variables. You can use the `.env.example` file as a reference.
+
+4. **🚀 Start the development server:**
+
+```bash
+npm run dev
+```
+5. **🌐 Open your browser:**
