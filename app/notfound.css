@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Phantom Sans";
+    src:
+        url("/public/phantom.woff") format("woff"),
+        url("/public/phantom.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+body {
+    font-family: "Phantom Sans", sans-serif;
+    font-size: 30px;
+}
