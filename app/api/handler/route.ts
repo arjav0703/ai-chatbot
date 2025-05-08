@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       authToken: process.env.AUTH_SECRET,
     };
 
-    const reqURL = body.reqURL;
+    const reqURL = await body.reqUrl;
 
     console.log("Handler: Sending request to => ", reqURL);
     console.log("Handler: Request data => ", reqData);

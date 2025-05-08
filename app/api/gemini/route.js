@@ -125,9 +125,10 @@ export const POST = async (req) => {
         .join("\n");
 
     const { data: history, error: fetchError } = await supabase
-      .from(config.supabaseTable)
+      .from("chats")
       .select("role, content")
       .eq("session_id", sessionId)
+      .eq("user_id", userid)
       .order("created_at", { ascending: false })
       .limit(5);
 
@@ -143,24 +144,24 @@ export const POST = async (req) => {
     const result = await executor.invoke({ input: finalInput });
 
     // === Save to Supabase ===
-    const { error: insertError } = await supabase
-      .from(config.supabaseTable)
-      .insert([
-        {
-          session_id: sessionId,
-          role: "user",
-          content: message,
-          created_at: new Date(),
-          user_id: userid,
-        },
-        {
-          session_id: sessionId,
-          role: "assistant",
-          content: result.output,
-          created_at: new Date(),
-          user_id: userid,
-        },
-      ]);
+    const { error: insertError } = await supabase.from("chats").insert([
+      {
+        session_id: sessionId,
+        role: "user",
+        content: message,
+        created_at: new Date(),
+        user_id: userid,
+        subject: subject,
+      },
+      {
+        session_id: sessionId,
+        role: "assistant",
+        content: result.output,
+        created_at: new Date(),
+        user_id: userid,
+        subject: subject,
+      },
+    ]);
 
     if (insertError) throw new Error(insertError.message);
 
