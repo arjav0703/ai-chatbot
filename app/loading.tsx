@@ -13,7 +13,7 @@ export default function ProgressDemo() {
   }, []);
 
   return (
-    <div className="flex justify-center w-full dark">
+    <div className="flex justify-center w-full dark bg-black align-middle">
       <Progress value={progress} className="w-[60%]" />
     </div>
   );
