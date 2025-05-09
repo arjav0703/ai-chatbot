@@ -7,6 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 import { useEffect, useState } from "react";
@@ -68,7 +69,8 @@ export default function ChatSidebar({
       className="dark text-white w-80"
       style={{ "--sidebar-width": "20rem" } as React.CSSProperties}
     >
-      <SidebarHeader className="p-4">
+      <SidebarHeader className="p-4 flex-row gap-3 relative my-5">
+        <SidebarTrigger />
         <h1 className="text-xl font-bold">Previous Chats</h1>
       </SidebarHeader>
       <SidebarContent>
@@ -76,7 +78,7 @@ export default function ChatSidebar({
           {sessions.map((session) => (
             <SidebarMenuItem key={session.session_id} className="w-full">
               <SidebarMenuButton
-                className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded-lg w-full min-h-fit transition-colors"
+                className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded-lg w-full h-fit transition-colors"
                 onClick={() => onSessionSelect(session.session_id)}
                 isActive={currentSessionId === session.session_id}
               >
