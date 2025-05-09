@@ -1,11 +1,12 @@
-// components/ChatSidebar.tsx
 "use client";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
 } from "@/components/ui/sidebar";
 
 import { useEffect, useState } from "react";
@@ -57,55 +58,36 @@ export default function ChatSidebar({
   }, [userId]);
 
   return (
-    // <div className="w-64 bg-zinc-900 h-full overflow-y-auto p-4">
-    //   <h2 className="text-xl font-bold mb-4">Previous Chats</h2>
-    //   <div className="space-y-2">
-    //     {sessions.map((session) => (
-    //       <button
-    //         key={session.session_id}
-    //         onClick={() => onSessionSelect(session.session_id)}
-    //         className={`w-full p-2 text-left rounded ${
-    //           currentSessionId === session.session_id
-    //             ? "bg-zinc-700"
-    //             : "bg-zinc-800 hover:bg-zinc-700"
-    //         }`}
-    //       >
-    //         <div className="text-sm font-medium">
-    //           {session.subject || "Untitled"}
-    //         </div>
-    //         <div className="text-xs text-gray-400">
-    //           {new Date(session.created_at).toLocaleString()}
-    //         </div>
-    //       </button>
-    //     ))}
-    //   </div>
-    // </div>
-    <Sidebar>
-      <SidebarHeader />
+    <Sidebar
+      className="dark text-white w-80"
+      style={{ "--sidebar-width": "20rem" } as React.CSSProperties}
+    >
+      <SidebarHeader className="p-4">
+        <h1 className="text-xl font-bold">Previous Chats</h1>
+      </SidebarHeader>
       <SidebarContent>
-        Hi
-        <SidebarGroup />
-        <SidebarGroup />
-        {sessions.map((session) => (
-          <button
-            key={session.session_id}
-            onClick={() => onSessionSelect(session.session_id)}
-            className={`w-full p-2 text-left rounded ${
-              currentSessionId === session.session_id
-                ? "bg-zinc-700"
-                : "bg-zinc-800 hover:bg-zinc-700"
-            }`}
-          >
-            <div className="text-sm font-medium">
-              {session.subject || "Untitled"}
-            </div>
-            <div className="text-xs text-gray-400">
-              {new Date(session.created_at).toLocaleString()}
-            </div>
-          </button>
-        ))}
+        <SidebarMenu className="space-y-4 p-2">
+          {sessions.map((session) => (
+            <SidebarMenuItem key={session.session_id} className="w-full">
+              <SidebarMenuButton
+                className="bg-zinc-800 hover:bg-zinc-700 p-4 rounded-lg w-full min-h-fit transition-colors"
+                onClick={() => onSessionSelect(session.session_id)}
+                isActive={currentSessionId === session.session_id}
+              >
+                <div className="flex flex-col gap-2">
+                  <span className="font-medium">
+                    {session.subject || "Untitled"}
+                  </span>
+                  <span className="text-xs text-gray-400">
+                    {new Date(session.created_at).toLocaleString()}
+                  </span>
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter className="p-4" />
     </Sidebar>
   );
 }
