@@ -189,12 +189,12 @@ export default function Chat() {
           currentSessionId={sessionId}
         />
       )}
-      <div className="w-screen p-4 mscreen bg-primary text-white">
+      <div className="w-screen bg-primary text-white">
         <div className="max-w-screen w-screen h-screen bg-primary text-white flex">
-          <div className="flex-1 p-4">
-            <SidebarTrigger />
-            <section className="max-w-6xl h-full flex flex-col mx-auto">
-              <div className="flex gap-4 dark">
+          <div className="flex-1 py-4 mb-5">
+            <SidebarTrigger className="lg:top-4 lg:left-4 lg:relative fixed" />
+            <section className="max-w-6xl h-full flex flex-col lg:mx-auto mx-5">
+              <div className="flex gap-4 dark ml-5 lg:mx-2">
                 <ChatNav />
               </div>
 

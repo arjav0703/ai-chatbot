@@ -11,7 +11,7 @@ export default function ChatNav() {
         className="text-l lg:text-2xl font-bold tars-mono flex items-center gap-2"
       >
         <ArrowLeft className="w-6 h-6" />
-        <span>CBSE-AI</span>
+        <span className="hidden lg:flex">CBSE-AI</span>
       </Link>
       <NewChat />
     </nav>
