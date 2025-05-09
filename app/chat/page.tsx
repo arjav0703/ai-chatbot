@@ -19,7 +19,7 @@ import subConfig from "@/lib/subConfig";
 import ChatSidebar from "@/components/ChatSidebar";
 import "./style.css";
 import { supabase } from "@/lib/supabase";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 interface Message {
   role: "user" | "assistant";
@@ -191,8 +191,8 @@ export default function Chat() {
       )}
       <div className="w-screen bg-primary text-white">
         <div className="max-w-screen w-screen h-screen bg-primary text-white flex">
-          <div className="flex-1 py-4">
-            <div className="dark"></div>
+          <div className="flex-1 py-4 mb-5">
+            <SidebarTrigger />
             <section className="max-w-6xl h-full flex flex-col lg:mx-auto mx-5">
               <div className="flex gap-4 dark">
                 <ChatNav />

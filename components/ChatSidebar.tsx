@@ -76,7 +76,7 @@ export default function ChatSidebar({
           {sessions.map((session) => (
             <SidebarMenuItem key={session.session_id} className="w-full">
               <SidebarMenuButton
-                className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded-lg w-full min-h-fit transition-colors"
+                className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded-lg w-full h-fit transition-colors"
                 onClick={() => onSessionSelect(session.session_id)}
                 isActive={currentSessionId === session.session_id}
               >
