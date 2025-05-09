@@ -11,6 +11,8 @@ import {
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import Motiondiv from "./motion/div";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 interface ChatSession {
   session_id: string;
@@ -20,10 +22,14 @@ interface ChatSession {
 
 export default function ChatSidebar({
   userId,
+  userImage,
+  userName,
   onSessionSelect,
   currentSessionId,
 }: {
   userId: string;
+  userImage: string;
+  userName: string;
   onSessionSelect: (sessionId: string) => void;
   currentSessionId: string;
 }) {
@@ -70,7 +76,7 @@ export default function ChatSidebar({
           {sessions.map((session) => (
             <SidebarMenuItem key={session.session_id} className="w-full">
               <SidebarMenuButton
-                className="bg-zinc-800 hover:bg-zinc-700 p-4 rounded-lg w-full min-h-fit transition-colors"
+                className="bg-zinc-800 hover:bg-zinc-700 p-2 rounded-lg w-full min-h-fit transition-colors"
                 onClick={() => onSessionSelect(session.session_id)}
                 isActive={currentSessionId === session.session_id}
               >
@@ -87,7 +93,23 @@ export default function ChatSidebar({
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter className="p-4" />
+      <SidebarFooter className="p-4 my-4">
+        <Motiondiv>
+          <div className="flex gap-3 items-center">
+            <Avatar className="w-8 h-8 lg:w-11 lg:h-11">
+              <AvatarImage src={`${userImage}`} />
+              <AvatarFallback>
+                {userName
+                  ? userName.charAt(0).toUpperCase()
+                  : userImage
+                    ? userImage.charAt(0).toUpperCase()
+                    : "U"}
+              </AvatarFallback>
+            </Avatar>
+            <h2 className="font-semibold">{userName}</h2>
+          </div>
+        </Motiondiv>
+      </SidebarFooter>
     </Sidebar>
   );
 }
