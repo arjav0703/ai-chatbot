@@ -19,6 +19,7 @@ import subConfig from "@/lib/subConfig";
 import ChatSidebar from "@/components/ChatSidebar";
 import "./style.css";
 import { supabase } from "@/lib/supabase";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 interface Message {
   role: "user" | "assistant";
@@ -175,130 +176,135 @@ export default function Chat() {
   };
 
   return (
-    <div className="w-screen p-4 h-screen bg-primary text-white">
-      <div className="w-screen h-screen bg-primary text-white flex">
-        {session && (
-          <ChatSidebar
-            userId={session.user.email!}
-            onSessionSelect={(selectedSessionId) => {
-              setSessionId(selectedSessionId);
-              loadChatHistory(selectedSessionId, session.user.email!);
-            }}
-            currentSessionId={sessionId}
-          />
-        )}
-        <div className="flex-1 p-4">
-          <div className="dark">
-            <Dialog open={isOpen} onOpenChange={setIsOpen}>
-              <DialogContent className="dark">
-                <DialogHeader className="gap-8 items-center p-0">
-                  <DialogTitle className="text-white">
-                    Select Subject
-                  </DialogTitle>
-                  <DialogDescription>
-                    <SubSelector
-                      selectedWebhook={selectedWebhook}
-                      setSelectedWebhook={setSelectedWebhook}
-                    />
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-          </div>
-          <section className="max-w-6xl h-full flex flex-col mx-auto">
-            <div className="flex gap-4 dark">
-              <ChatNav />
-            </div>
-
-            {error && (
-              <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
-                {error}
+    <SidebarProvider>
+      <div className="w-screen p-4 h-screen bg-primary text-white">
+        <div className="w-screen h-screen bg-primary text-white flex">
+          {session && (
+            <ChatSidebar
+              userId={session.user.email!}
+              onSessionSelect={(selectedSessionId) => {
+                setSessionId(selectedSessionId);
+                loadChatHistory(selectedSessionId, session.user.email!);
+              }}
+              currentSessionId={sessionId}
+            />
+          )}
+          <div className="flex-1 p-4">
+            <div className="dark"></div>
+            <section className="max-w-6xl h-full flex flex-col mx-auto">
+              <div className="flex gap-4 dark">
+                <ChatNav />
               </div>
-            )}
-            <div className="flex-1 mb-4 p-4 min-w-full overflow-y-auto">
-              <div className="space-y-4">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${
-                      message.role === "user" ? "justify-end" : "justify-start"
-                    }`}
-                  >
+
+              {error && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+                  {error}
+                </div>
+              )}
+              <div className="flex-1 mb-4 p-4 min-w-full overflow-y-auto">
+                <div className="space-y-4">
+                  {messages.map((message, index) => (
                     <div
-                      className={`max-w-[80%] rounded-xl p-4 ${
+                      key={index}
+                      className={`flex ${
                         message.role === "user"
-                          ? "bg-zinc-800 text-white"
-                          : " text-white"
+                          ? "justify-end"
+                          : "justify-start"
                       }`}
                     >
-                      <div className="whitespace-pre-wrap">
-                        {message.content}
+                      <div
+                        className={`max-w-[80%] rounded-xl p-4 ${
+                          message.role === "user"
+                            ? "bg-zinc-800 text-white"
+                            : " text-white"
+                        }`}
+                      >
+                        <div className="whitespace-pre-wrap">
+                          {message.content}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-                {isLoading && (
-                  <div className="flex justify-start">
-                    <div className="bg-gray-100 text-gray-900 rounded-lg p-3">
-                      <Loader2 className="animate-spin" />
+                  ))}
+                  {isLoading && (
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 text-gray-900 rounded-lg p-3">
+                        <Loader2 className="animate-spin" />
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-4 w-full"
-            >
-              <div className="flex self-end gap-2">
-                <p>Long Answer</p>
-                <ToggleSlider
-                  onToggle={setIsLongAnswer}
-                  barBackgroundColorActive="#789a30"
-                />
-              </div>
-              <div className="relative">
-                <textarea
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Type your message..."
-                  disabled={isLoading}
-                  aria-label="Message input"
-                  className="w-full min-h-[120px] rounded-lg p-4 bg-zinc-800/50 border border-zinc-700 text-white resize-none focus:outline-none focus:ring-2 focus:ring-zinc-500"
-                />
-                <div className="absolute bottom-2 right-4 text-xs text-gray-400">
-                  {input.length}/500
+                  )}
                 </div>
               </div>
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4 w-full"
+              >
+                <div className="flex self-end gap-2">
+                  <p>Long Answer</p>
+                  <ToggleSlider
+                    onToggle={setIsLongAnswer}
+                    barBackgroundColorActive="#789a30"
+                  />
+                </div>
+                <div className="relative">
+                  <textarea
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Type your message..."
+                    disabled={isLoading}
+                    aria-label="Message input"
+                    className="w-full min-h-[120px] rounded-lg p-4 bg-zinc-800/50 border border-zinc-700 text-white resize-none focus:outline-none focus:ring-2 focus:ring-zinc-500"
+                  />
+                  <div className="absolute bottom-2 right-4 text-xs text-gray-400">
+                    {input.length}/500
+                  </div>
+                </div>
 
-              <div className="flex items-center justify-end gap-2">
+                <div className="flex items-center justify-end gap-2">
+                  <SubSelector
+                    selectedWebhook={selectedWebhook}
+                    setSelectedWebhook={setSelectedWebhook}
+                  />
+                  {session && (
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
+                    >
+                      {isLoading ? (
+                        <Loader2 className="animate-spin" />
+                      ) : (
+                        "Send"
+                      )}
+                    </Button>
+                  )}
+                  {!session && (
+                    <Link
+                      href="/login"
+                      className="flex px-3 py-1.5 items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
+                    >
+                      Sign in
+                    </Link>
+                  )}
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="dark">
+            <DialogHeader className="gap-8 items-center p-0">
+              <DialogTitle className="text-white">Select Subject</DialogTitle>
+              <DialogDescription>
                 <SubSelector
                   selectedWebhook={selectedWebhook}
                   setSelectedWebhook={setSelectedWebhook}
                 />
-                {session && (
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    className="flex items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
-                  >
-                    {isLoading ? <Loader2 className="animate-spin" /> : "Send"}
-                  </Button>
-                )}
-                {!session && (
-                  <Link
-                    href="/login"
-                    className="flex px-3 py-1.5 items-center gap-2 rounded-lg bg-zinc-800/50 text-white border border-zinc-700 hover:bg-zinc-700/50 transition-colors"
-                  >
-                    Sign in
-                  </Link>
-                )}
-              </div>
-            </form>
-          </section>
-        </div>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
-    </div>
+    </SidebarProvider>
   );
 }
