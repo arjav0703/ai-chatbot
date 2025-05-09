@@ -30,7 +30,6 @@ File names should follow the following guidelines:
 
 - All lowercase
 - `-` as a space separator for dates in file names
-- Dates in `DD-MM-YY` format
 
 ## Git Commits
 
