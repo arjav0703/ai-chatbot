@@ -189,11 +189,11 @@ export default function Chat() {
           currentSessionId={sessionId}
         />
       )}
-      <div className="w-screen p-4 mscreen bg-primary text-white">
+      <div className="w-screen bg-primary text-white">
         <div className="max-w-screen w-screen h-screen bg-primary text-white flex">
-          <div className="flex-1 p-4">
+          <div className="flex-1 py-4">
             <div className="dark"></div>
-            <section className="max-w-6xl h-full flex flex-col mx-auto">
+            <section className="max-w-6xl h-full flex flex-col lg:mx-auto mx-5">
               <div className="flex gap-4 dark">
                 <ChatNav />
               </div>
