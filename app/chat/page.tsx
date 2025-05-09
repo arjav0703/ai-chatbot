@@ -189,8 +189,8 @@ export default function Chat() {
           currentSessionId={sessionId}
         />
       )}
-      <div className="w-screen p-4 bg-primary text-white">
-        <div className="max-w-screen w-screen h-screen bg-primary flex">
+      <div className="w-screen p-4 mscreen bg-primary text-white">
+        <div className="max-w-screen w-screen h-screen bg-primary text-white flex">
           <div className="flex-1 p-4">
             <SidebarTrigger />
             <section className="max-w-6xl h-full flex flex-col mx-auto">
