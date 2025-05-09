@@ -177,20 +177,20 @@ export default function Chat() {
 
   return (
     <SidebarProvider>
+      {session && (
+        <ChatSidebar
+          userId={session.user.email!}
+          userName={session.user.name!}
+          userImage={session.user.image!}
+          onSessionSelect={(selectedSessionId) => {
+            setSessionId(selectedSessionId);
+            loadChatHistory(selectedSessionId, session.user.email!);
+          }}
+          currentSessionId={sessionId}
+        />
+      )}
       <div className="w-screen p-4 mscreen bg-primary text-white">
         <div className="max-w-screen w-screen h-screen bg-primary text-white flex">
-          {session && (
-            <ChatSidebar
-              userId={session.user.email!}
-              userName={session.user.name!}
-              userImage={session.user.image!}
-              onSessionSelect={(selectedSessionId) => {
-                setSessionId(selectedSessionId);
-                loadChatHistory(selectedSessionId, session.user.email!);
-              }}
-              currentSessionId={sessionId}
-            />
-          )}
           <div className="flex-1 p-4">
             <div className="dark"></div>
             <section className="max-w-6xl h-full flex flex-col mx-auto">

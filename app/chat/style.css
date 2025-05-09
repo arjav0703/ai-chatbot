@@ -1,0 +1,12 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+/*
+.mscreen {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+} */
