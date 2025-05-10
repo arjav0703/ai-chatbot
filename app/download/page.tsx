@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ChevronLeft } from "lucide-react";
+import Motiondiv from "@/components/motion/div";
 
 const DownloadPage = () => {
   return (
@@ -15,75 +16,97 @@ const DownloadPage = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-3xl">
           <h2 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
-            CHOOSE YOUR PLATFORM
+            DOWNLOAD THE APP
           </h2>
         </div>
 
         <div className="mt-15 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl">
-          <InstallButton os="android" />
-          <InstallButton os="ios" />
-          <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
-            <Button
-              className="bg-transparent w-fit h-fit"
-              onClick={() => {
-                window.open(
-                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-linux-x64-1.0.0.zip",
-                  "_blank",
-                );
-              }}
-            >
-              <Image src="/linux.svg" alt="Linux Logo" width={50} height={50} />
-            </Button>
-          </div>
-          <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm ">
-            <Button
-              className="bg-transparent w-fit h-fit"
-              onClick={() => {
-                window.open(
-                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai_1.0.0_amd64.deb",
-                  "_blank",
-                );
-              }}
-            >
-              <Image
-                src="/debian.svg"
-                alt="Debian Logo"
-                width={50}
-                height={50}
-              />
-            </Button>
-          </div>
-          <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
-            <Button
-              className="bg-transparent w-fit h-fit"
-              onClick={() => {
-                window.open(
-                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0.Setup.exe",
-                  "_blank",
-                );
-              }}
-            >
-              <Image
-                src="/windows.svg"
-                alt="Windows Logo"
-                width={50}
-                height={50}
-              />
-            </Button>
-          </div>
-          <div className="bg-white border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
-            <Button
-              className="bg-transparent w-fit h-fit"
-              onClick={() => {
-                window.open(
-                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0-arm64.dmg",
-                  "_blank",
-                );
-              }}
-            >
-              <Image src="/macos.svg" alt="MacOS Logo" width={50} height={50} />
-            </Button>
-          </div>
+          <Motiondiv>
+            <InstallButton os="android" />
+          </Motiondiv>
+          <Motiondiv>
+            <InstallButton os="ios" />
+          </Motiondiv>
+          <Motiondiv>
+            <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+              <Button
+                className="bg-transparent w-fit h-fit"
+                onClick={() => {
+                  window.open(
+                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-linux-x64-1.0.0.zip",
+                    "_blank",
+                  );
+                }}
+              >
+                <Image
+                  src="/linux.svg"
+                  alt="Linux Logo"
+                  width={50}
+                  height={50}
+                />
+              </Button>
+            </div>
+          </Motiondiv>
+          <Motiondiv>
+            <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm ">
+              <Button
+                className="bg-transparent w-fit h-fit"
+                onClick={() => {
+                  window.open(
+                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai_1.0.0_amd64.deb",
+                    "_blank",
+                  );
+                }}
+              >
+                <Image
+                  src="/debian.svg"
+                  alt="Debian Logo"
+                  width={50}
+                  height={50}
+                />
+              </Button>
+            </div>
+          </Motiondiv>
+          <Motiondiv>
+            <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+              <Button
+                className="bg-transparent w-fit h-fit"
+                onClick={() => {
+                  window.open(
+                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0.Setup.exe",
+                    "_blank",
+                  );
+                }}
+              >
+                <Image
+                  src="/windows.svg"
+                  alt="Windows Logo"
+                  width={50}
+                  height={50}
+                />
+              </Button>
+            </div>
+          </Motiondiv>
+          <Motiondiv>
+            <div className="bg-white border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+              <Button
+                className="bg-transparent w-fit h-fit"
+                onClick={() => {
+                  window.open(
+                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0-arm64.dmg",
+                    "_blank",
+                  );
+                }}
+              >
+                <Image
+                  src="/macos.svg"
+                  alt="MacOS Logo"
+                  width={50}
+                  height={50}
+                />
+              </Button>
+            </div>
+          </Motiondiv>
         </div>
       </main>
 
