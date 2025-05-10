@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   keywords: [
     "CBSE AI",
-    "CBSE AI download",
+    "CBSE AI login",
     "study companion class 10",
     "study companion class 9",
     "CBSE AI assistant",
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     telephone: false,
   },
   authors: [{ name: "Arjav", url: "https://arjav.dino.icu" }],
-  title: "Download",
+  title: "Login",
   description:
-    "Download CBSE AI, an AI assistant to help 9th and 10th graders with their academic needs",
+    "Login to CBSE AI, an AI assistant to help 9th and 10th graders with their academic needs",
   openGraph: {
-    title: "Download CBSE AI",
+    title: "Login to CBSE AI",
     description:
-      "Download CBSE AI, an AI assistant to help 9th and 10th graders with their academic needs",
+      "Login to CBSE AI, an AI assistant to help 9th and 10th graders with their academic needs",
     url: "https://cbseai.vercel.app/download",
     siteName: "CBSE AI",
     images: [
