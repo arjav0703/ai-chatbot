@@ -93,7 +93,7 @@ export const POST = async (req) => {
         name: `${subject} database`,
         description: "Retrieve information to answer user queries.",
         async func(query) {
-          const results = await vectorStore.similaritySearch(query, 6);
+          const results = await vectorStore.similaritySearch(query, 7);
           return results.map((r) => r.pageContent).join("\n\n---\n");
         },
       },
@@ -101,7 +101,7 @@ export const POST = async (req) => {
 
     // === Model ===
     const model = new ChatGoogleGenerativeAI({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-pro-exp-03-25",
       apiKey: GOOGLE_API_KEY,
     });
 
