@@ -116,7 +116,6 @@ export default function PrivacyPage() {
       </main>
 
       <footer className="p-6 text-center text-zinc-500 text-sm">
-        <p>This page was vibe coded.</p>
         <p>© {new Date().getFullYear()} CBSE AI. All rights reserved.</p>
       </footer>
     </div>

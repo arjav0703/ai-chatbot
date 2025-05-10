@@ -15,9 +15,9 @@ const DownloadPage = () => {
       </Link>
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-3xl">
-          <h2 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
+          <h1 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
             DOWNLOAD THE APP
-          </h2>
+          </h1>
         </div>
 
         <div className="mt-15 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl">

@@ -4,7 +4,13 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
-  keywords: ["CBSE", "AI", "Class 9", "Class 10"],
+  keywords: [
+    "CBSE AI",
+    "CBSE AI login",
+    "study companion class 10",
+    "study companion class 9",
+    "CBSE AI assistant",
+  ],
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
