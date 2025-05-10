@@ -39,7 +39,7 @@ export const POST = async (req) => {
   // Long answer handling
   let SysMessage = config.systemMessage;
   if (longans) {
-    SysMessage += " Answer in as much detail as possible.";
+    SysMessage += " Answer in detail.";
   } else {
     SysMessage += " Answer in a concise manner.";
   }
