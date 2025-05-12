@@ -20,6 +20,7 @@ import ChatSidebar from "@/components/ChatSidebar";
 import "./style.css";
 import { supabase } from "@/lib/supabase";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import Markdown from "react-markdown";
 
 interface Message {
   role: "user" | "assistant";
@@ -218,11 +219,11 @@ export default function Chat() {
                         className={`max-w-[80%] rounded-xl p-4 ${
                           message.role === "user"
                             ? "bg-zinc-800 text-white"
-                            : " text-white"
+                            : "text-white"
                         }`}
                       >
-                        <div className="whitespace-pre-wrap">
-                          {message.content}
+                        <div className="whitespace-pre-wrap markdown-content">
+                          <Markdown>{message.content}</Markdown>
                         </div>
                       </div>
                     </div>
