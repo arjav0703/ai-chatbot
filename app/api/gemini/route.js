@@ -101,7 +101,7 @@ export const POST = async (req) => {
 
     // === Model ===
     const model = new ChatGoogleGenerativeAI({
-      model: "gemini-2.5-pro-exp-03-25",
+      model: "gemini-2.0-flash",
       apiKey: GOOGLE_API_KEY,
     });
 
