@@ -19,34 +19,31 @@ body {
 
 .markdown-content h1 {
     font-size: 2em;
-    margin-bottom: 0.5em;
+
     font-weight: bold;
 }
 
 .markdown-content h2 {
     font-size: 1.5em;
-    margin-bottom: 0.5em;
+
     font-weight: bold;
 }
 
 .markdown-content h3 {
     font-size: 1.25em;
-    margin-bottom: 0.5em;
+
     font-weight: bold;
 }
 
 .markdown-content p {
-    margin-bottom: 1em;
 }
 
 .markdown-content ul,
 .markdown-content ol {
     margin-left: 1.5em;
-    margin-bottom: 1em;
 }
 
 .markdown-content li {
-    margin-bottom: 0.5em;
 }
 
 .markdown-content code {
@@ -61,14 +58,13 @@ body {
     padding: 1em;
     border-radius: 5px;
     overflow-x: auto;
-    margin-bottom: 1em;
 }
 
 .markdown-content blockquote {
     border-left: 3px solid rgba(255, 255, 255, 0.2);
     padding-left: 1em;
     margin-left: 0;
-    margin-bottom: 1em;
+
     font-style: italic;
 }
 
@@ -80,7 +76,6 @@ body {
 .markdown-content table {
     border-collapse: collapse;
     width: 100%;
-    margin-bottom: 1em;
 }
 
 .markdown-content th,
