@@ -33,11 +33,11 @@ export const metadata: Metadata = {
     title: "CBSE AI",
     description:
       "An AI assistant to help 9th and 10th graders with their academic needs",
-    url: "https://cbseai.vercel.app",
+    url: "https://cbseai.live",
     siteName: "CBSE AI",
     images: [
       {
-        url: "https://cbseai.vercel.app/og.png",
+        url: "https://cbseai.live/og.png",
         width: 1239,
         height: 475,
         alt: "CBSE AI",
