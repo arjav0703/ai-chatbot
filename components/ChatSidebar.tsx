@@ -68,8 +68,9 @@ export default function ChatSidebar({
     <Sidebar
       className="dark text-white w-80"
       style={{ "--sidebar-width": "20rem" } as React.CSSProperties}
+      variant="inset"
     >
-      <SidebarHeader className="p-4 flex-row gap-3 relative my-5">
+      <SidebarHeader className="p-4 flex-row gap-3 relative my-4 md:mt-18">
         <SidebarTrigger />
         <h1 className="text-xl font-bold">Previous Chats</h1>
       </SidebarHeader>
