@@ -238,7 +238,7 @@ export default function Chat() {
             </div>
           )}
         </header>
-
+        <SidebarTrigger className="fixed top-24 left-6" />
         <div className="flex flex-1 overflow-hidden">
           {session && (
             <ChatSidebar
