@@ -141,5 +141,6 @@
 }
 
 *::selection {
-    background-color: #789a30;
+    background-color: #ffff;
+    color: blue;
 }

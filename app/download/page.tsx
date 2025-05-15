@@ -9,18 +9,30 @@ import Motiondiv from "@/components/motion/div";
 
 const DownloadPage = () => {
   return (
-    <div className="flex flex-col bg-zinc-900 min-h-screen dark color-bg text-zinc-100">
-      <Link href="/">
-        <ChevronLeft size={40} />
-      </Link>
-      <main className="flex-1 flex flex-col items-center justify-center px-4">
+    <div className="flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-900 to-black min-h-screen dark text-zinc-100">
+      <div className="sm:px-8 px-6 py-6 backdrop-blur-sm bg-black/5 sticky top-0 z-50 border-b border-white/10">
+        <Link
+          href="/"
+          className="flex items-center w-fit hover:text-blue-400 transition-colors"
+        >
+          <ChevronLeft size={24} />
+          <span className="ml-2 font-medium">Back to Home</span>
+        </Link>
+      </div>
+
+      <main className="flex-1 flex flex-col items-center justify-center px-6 lg:px-8">
         <div className="text-center max-w-3xl">
-          <h1 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-12 sm:text-5xl sm:leading-18">
-            DOWNLOAD THE APP
+          <h1 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-tight tracking-tight sm:text-5xl sm:leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
+              DOWNLOAD THE APP
+            </span>
           </h1>
+          <p className="text-xl text-zinc-300 mb-12 max-w-2xl mx-auto">
+            Access your CBSE AI study companion on all your devices
+          </p>
         </div>
 
-        <div className="mt-15 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mb-16">
           <Motiondiv>
             <InstallButton os="android" />
           </Motiondiv>
@@ -28,7 +40,7 @@ const DownloadPage = () => {
             <InstallButton os="ios" />
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
               <Button
                 className="bg-transparent w-fit h-fit"
                 onClick={() => {
@@ -41,14 +53,14 @@ const DownloadPage = () => {
                 <Image
                   src="/linux.svg"
                   alt="Linux Logo"
-                  width={50}
-                  height={50}
+                  width={60}
+                  height={60}
                 />
               </Button>
             </div>
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm ">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
               <Button
                 className="bg-transparent w-fit h-fit"
                 onClick={() => {
@@ -61,14 +73,14 @@ const DownloadPage = () => {
                 <Image
                   src="/debian.svg"
                   alt="Debian Logo"
-                  width={50}
-                  height={50}
+                  width={60}
+                  height={60}
                 />
               </Button>
             </div>
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
               <Button
                 className="bg-transparent w-fit h-fit"
                 onClick={() => {
@@ -81,14 +93,14 @@ const DownloadPage = () => {
                 <Image
                   src="/windows.svg"
                   alt="Windows Logo"
-                  width={50}
-                  height={50}
+                  width={60}
+                  height={60}
                 />
               </Button>
             </div>
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-white border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
               <Button
                 className="bg-transparent w-fit h-fit"
                 onClick={() => {
@@ -101,8 +113,8 @@ const DownloadPage = () => {
                 <Image
                   src="/macos.svg"
                   alt="MacOS Logo"
-                  width={50}
-                  height={50}
+                  width={60}
+                  height={60}
                 />
               </Button>
             </div>
@@ -110,8 +122,23 @@ const DownloadPage = () => {
         </div>
       </main>
 
-      <footer className="p-6 text-center text-zinc-200 text-sm">
-        <p>© {new Date().getFullYear()} CBSE AI. All rights reserved.</p>
+      <footer className="py-10 px-6 border-t border-white/10 mt-auto">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <p className="text-zinc-300 text-sm mb-4 md:mb-0">
+            © {new Date().getFullYear()} CBSE AI. All rights reserved.
+          </p>
+          <div className="flex gap-8 text-zinc-400">
+            <Link href="/privacy" className="hover:text-white text-sm">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white text-sm">
+              Terms of Use
+            </Link>
+            <Link href="/contact" className="hover:text-white text-sm">
+              Contact
+            </Link>
+          </div>
+        </div>
       </footer>
     </div>
   );
@@ -162,12 +189,12 @@ function InstallButton({ os }: { os: "android" | "ios" }) {
   if (!showButton) return null;
 
   return (
-    <div className="bg-zinc-200 border-1 border-zinc-100 rounded-lg backdrop-blur-sm">
+    <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
       <Button
         className="bg-transparent w-fit h-fit"
         onClick={handleInstallClick}
       >
-        <Image src={`/${os}.svg`} alt={`${os} Logo`} width={50} height={50} />
+        <Image src={`/${os}.svg`} alt={`${os} Logo`} width={60} height={60} />
       </Button>
     </div>
   );
