@@ -1,14 +1,17 @@
-import Myheader from "@/components/MyHeader";
+import MyFooter from "@/components/MyFooter";
 
 export default function TermsPage() {
   return (
-    <div className="flex flex-col bg-zinc-900 min-h-screen dark">
-      <Myheader />
-
+    <div className="flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-900 to-black min-h-screen dark">
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
-        <h2 className="text-4xl font-bold text-white mb-8">Terms of Service</h2>
+        <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">
+          Terms of{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
+            Service
+          </span>
+        </h2>
 
-        <div className="prose prose-invert max-w-none">
+        <div className="prose prose-invert max-w-none bg-white/5 border border-white/10 p-8 rounded-xl backdrop-blur-sm shadow-lg">
           <p className="text-zinc-300 mb-6">
             Last updated: {new Date().toLocaleDateString()}
           </p>
@@ -100,9 +103,7 @@ export default function TermsPage() {
         </div>
       </main>
 
-      <footer className="p-6 text-center text-zinc-500 text-sm">
-        <p>© {new Date().getFullYear()} CBSE AI. All rights reserved.</p>
-      </footer>
+      <MyFooter />
     </div>
   );
 }
