@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Motiondiv from "./motion/div";
-import { Button } from "./ui/button";
+import Motiondiv from "../motion/div";
+import { Button } from "../ui/button";
 export default function PublicHero() {
   return (
     <div className="flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-900 to-black min-h-screen dark">
