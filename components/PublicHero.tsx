@@ -1,12 +1,9 @@
 import Link from "next/link";
-import Myheader from "./MyHeader";
 import Motiondiv from "./motion/div";
 import { Button } from "./ui/button";
 export default function PublicHero() {
   return (
     <div className="flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-900 to-black min-h-screen dark">
-      <Myheader />
-
       <main className="flex-1 flex flex-col items-center justify-center px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-white mb-6 mt-16 leading-tight tracking-tight sm:text-6xl">
