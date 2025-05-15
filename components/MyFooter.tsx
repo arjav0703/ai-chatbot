@@ -13,8 +13,8 @@ export default function MyFooter() {
           <Link href="/terms" className="hover:text-white text-sm">
             Terms of Use
           </Link>
-          <Link href="/contact" className="hover:text-white text-sm">
-            Contact
+          <Link href="/about" className="hover:text-white text-sm">
+            About
           </Link>
         </div>
       </div>

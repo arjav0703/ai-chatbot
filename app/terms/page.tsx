@@ -1,8 +1,10 @@
+import BackToHome from "@/components/BackToHome";
 import MyFooter from "@/components/MyFooter";
 
 export default function TermsPage() {
   return (
     <div className="flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-900 to-black min-h-screen dark">
+      <BackToHome />
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
         <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">
           Terms of{" "}

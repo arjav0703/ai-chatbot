@@ -1,25 +1,15 @@
 "use client";
-import React from "react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { ChevronLeft } from "lucide-react";
 import Motiondiv from "@/components/motion/div";
+import MyFooter from "@/components/MyFooter";
+import BackToHome from "@/components/BackToHome";
 
 const DownloadPage = () => {
   return (
     <div className="flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-900 to-black min-h-screen dark text-zinc-100">
-      <div className="sm:px-8 px-6 py-6 backdrop-blur-sm bg-black/5 sticky top-0 z-50 border-b border-white/10">
-        <Link
-          href="/"
-          className="flex items-center w-fit hover:text-blue-400 transition-colors"
-        >
-          <ChevronLeft size={24} />
-          <span className="ml-2 font-medium">Back to Home</span>
-        </Link>
-      </div>
-
+      <BackToHome />
       <main className="flex-1 flex flex-col items-center justify-center px-6 lg:px-8">
         <div className="text-center max-w-3xl">
           <h1 className="text-3xl font-bold mb-6 mt-14 tars-mono leading-tight tracking-tight sm:text-5xl sm:leading-tight">
@@ -121,25 +111,7 @@ const DownloadPage = () => {
           </Motiondiv>
         </div>
       </main>
-
-      <footer className="py-10 px-6 border-t border-white/10 mt-auto">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <p className="text-zinc-300 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} CBSE AI. All rights reserved.
-          </p>
-          <div className="flex gap-8 text-zinc-400">
-            <Link href="/privacy" className="hover:text-white text-sm">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white text-sm">
-              Terms of Use
-            </Link>
-            <Link href="/contact" className="hover:text-white text-sm">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <MyFooter />
     </div>
   );
 };
