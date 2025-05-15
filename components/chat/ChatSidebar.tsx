@@ -12,8 +12,8 @@ import {
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import Motiondiv from "./motion/div";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import Motiondiv from "@/components/motion/div";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ChatSession {
   session_id: string;
