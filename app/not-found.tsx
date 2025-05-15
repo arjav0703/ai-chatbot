@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Motiondiv from "@/components/motion/div";
 
 export default function NotFound() {
@@ -23,7 +22,7 @@ export default function NotFound() {
             </h1>
 
             <p className="text-lg text-zinc-300 mb-8">
-              Ahoy Sailor! Looks like you've ventured into uncharted waters.
+              Ahoy Sailor! Looks like you{"'"}ve ventured into uncharted waters.
               This page has vanished into the digital deep.
             </p>
 
