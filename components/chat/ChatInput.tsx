@@ -2,6 +2,12 @@ import { Loader2, Send, Settings } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ToggleSlider } from "react-toggle-slider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 const ChatInput = ({
   handleSubmit,
@@ -16,7 +22,7 @@ const ChatInput = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-t border-white/10 bg-black/20 backdrop-blur-sm p-4 sm:px-8"
+      className="border-t border-white/10 bg-black/20 backdrop-blur-sm p-4 sm:px-8 dark"
     >
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-end gap-3 mb-3">
@@ -29,6 +35,24 @@ const ChatInput = ({
               handleBackgroundColor="white"
               handleSize={18}
             />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="hidden md:flex gap-2 border-white/20 text-white bg-white/5 hover:bg-white/10"
+                    onClick={() => setIsOpen(true)}
+                  >
+                    <Settings size={16} />
+                    {/* <span>Settings</span> */}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Change subject and settings</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
           <Button
             type="button"

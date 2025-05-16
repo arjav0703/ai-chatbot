@@ -27,25 +27,6 @@ const ChatHeader = ({ session, selectedWebhook, setIsOpen }) => {
       </div>
       {session && (
         <div className="flex items-center gap-3">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="hidden md:flex gap-2 border-white/20 text-white bg-white/5 hover:bg-white/10"
-                  onClick={() => setIsOpen(true)}
-                >
-                  <Settings size={16} />
-                  <span>Settings</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Change subject and settings</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-
           <div className="flex items-center gap-2 bg-white/5 py-1.5 px-3 rounded-full border border-white/10">
             <Avatar className="w-6 h-6">
               <AvatarImage src={`${session.user?.image}`} />

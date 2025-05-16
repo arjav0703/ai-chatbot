@@ -5,7 +5,7 @@ import Markdown from "react-markdown";
 
 const Messages = ({ isLoading, messages }) => {
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className="space-y-6 max-w-5xl mx-auto">
       <SidebarTrigger className="lg:hidden mb-4 flex">
         <Button
           variant="outline"
