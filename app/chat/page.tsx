@@ -170,11 +170,7 @@ export default function Chat() {
   return (
     <SidebarProvider>
       <div className="w-screen h-screen bg-gradient-to-br from-zinc-900 via-zinc-900 to-black text-white flex flex-col">
-        <ChatHeader
-          setIsOpen={setIsOpen}
-          session={session}
-          selectedWebhook={selectedWebhook}
-        />
+        <ChatHeader session={session} selectedWebhook={selectedWebhook} />
         <SidebarTrigger className="fixed top-24 left-6" />
         <div className="flex flex-1 overflow-hidden">
           {session && (

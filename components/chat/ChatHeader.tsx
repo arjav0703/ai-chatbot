@@ -1,15 +1,7 @@
 import Link from "next/link";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
-import { Button } from "../ui/button";
-import { Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-const ChatHeader = ({ session, selectedWebhook, setIsOpen }) => {
+const ChatHeader = ({ session, selectedWebhook }) => {
   return (
     <header className="sm:px-8 px-6 py-4 flex justify-between items-center backdrop-blur-sm bg-black/5 sticky top-0 z-50 border-b border-white/10">
       <div className="flex items-center gap-4">
