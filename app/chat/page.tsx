@@ -285,42 +285,48 @@ export default function Chat() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg w-full">
                     <Button
                       variant="outline"
-                      onClick={() =>
-                        setInput("Explain the concept of photosynthesis")
-                      }
+                      onClick={() => {
+                        setInput("Explain the concept of photosynthesis");
+                        setSelectedWebhook(subConfig[1]);
+                        setIsLongAnswer(true);
+                      }}
                       className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
                     >
                       Explain photosynthesis
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={() =>
+                      onClick={() => {
                         setInput(
-                          "Help me solve this linear equation: 3x + 5 = 26",
-                        )
-                      }
-                      className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
-                    >
-                      Solve 3x + 5 = 26
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() =>
-                        setInput(
-                          "Write a summary of 'The Story of My Life' by Helen Keller",
-                        )
-                      }
+                          "Write a summary of 'A letter to God' by G.L. Funtes",
+                        );
+                        setSelectedWebhook(subConfig[0]);
+                        setIsLongAnswer(true);
+                      }}
                       className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
                     >
                       Summarize {"'A Letter to God'"}
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={() =>
+                      onClick={() => {
+                        setInput("Explain Reign of terror");
+                        setSelectedWebhook(subConfig[2]);
+                        setIsLongAnswer(true);
+                      }}
+                      className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
+                    >
+                      Explain Reign of terror
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
                         setInput(
                           "Explain Newton's laws of motion with examples",
-                        )
-                      }
+                        );
+                        setSelectedWebhook(subConfig[1]);
+                        setIsLongAnswer(true);
+                      }}
                       className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
                     >
                       Explain Newton{"'"}s laws
