@@ -9,7 +9,7 @@ import {
 import SubSelector from "./SubSelector";
 import { Button } from "../ui/button";
 
-const Settings = ({
+const ChatSettings = ({
   isOpen,
   setIsOpen,
   selectedWebhook,
@@ -71,4 +71,4 @@ const Settings = ({
     </Dialog>
   );
 };
-export default Settings;
+export default ChatSettings;
