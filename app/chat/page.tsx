@@ -1,9 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Loader2, Send, Settings } from "lucide-react";
-import { ToggleSlider } from "react-toggle-slider";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import subConfig from "@/lib/subConfig";
