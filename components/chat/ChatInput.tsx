@@ -52,7 +52,7 @@ const ChatInput = ({
             className="w-full min-h-[100px] rounded-xl p-4 pr-12 bg-white/5 border border-white/20 text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50"
             maxLength={500}
           />
-          <div className="absolute bottom-4 right-4 text-xs text-zinc-400">
+          <div className="absolute top-4 right-4 text-xs text-zinc-400">
             {input.length}/500
           </div>
           {session && (
