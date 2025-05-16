@@ -19,7 +19,6 @@ import ChatSidebar from "@/components/chat/ChatSidebar";
 import "./style.css";
 import { supabase } from "@/lib/supabase";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import Markdown from "react-markdown";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Tooltip,
@@ -27,6 +26,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import EmptyState from "@/components/chat/EmptyState";
+import Messages from "@/components/chat/Messages";
 
 interface Message {
   role: "user" | "assistant";
@@ -256,151 +257,16 @@ export default function Chat() {
           <main className="flex-1 flex flex-col overflow-hidden">
             <div className="flex-1 overflow-y-auto px-4 py-6">
               {messages.length === 0 && (
-                <div className="flex flex-col items-center justify-center h-full text-center px-6">
-                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center mb-8 border border-blue-500/30">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="36"
-                      height="36"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-blue-300"
-                    >
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-white mb-3">
-                    Start a conversation
-                  </h3>
-                  <p className="text-zinc-300 mb-6 max-w-md">
-                    Ask any questions about your CBSE curriculum for class 9
-                    {" & "}
-                    10. I{"'"}m here to help you understand concepts, solve
-                    problems, and prepare for exams.
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg w-full">
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setInput("Explain the concept of photosynthesis");
-                        setSelectedWebhook(subConfig[1]);
-                        setIsLongAnswer(true);
-                      }}
-                      className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
-                    >
-                      Explain photosynthesis
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setInput(
-                          "Write a summary of 'A letter to God' by G.L. Funtes",
-                        );
-                        setSelectedWebhook(subConfig[0]);
-                        setIsLongAnswer(true);
-                      }}
-                      className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
-                    >
-                      Summarize {"'A Letter to God'"}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setInput("Explain Reign of terror");
-                        setSelectedWebhook(subConfig[2]);
-                        setIsLongAnswer(true);
-                      }}
-                      className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
-                    >
-                      Explain Reign of terror
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setInput(
-                          "Explain Newton's laws of motion with examples",
-                        );
-                        setSelectedWebhook(subConfig[1]);
-                        setIsLongAnswer(true);
-                      }}
-                      className="justify-start text-left border-white/20 text-white bg-white/5 hover:bg-white/10"
-                    >
-                      Explain Newton{"'"}s laws
-                    </Button>
-                  </div>
-                </div>
+                <EmptyState
+                  setInput={setInput}
+                  setSelectedWebhook={setSelectedWebhook}
+                  setIsLongAnswer={setIsLongAnswer}
+                  subConfig={subConfig}
+                />
               )}
 
               {messages.length > 0 && (
-                <div className="space-y-6 max-w-4xl mx-auto">
-                  <SidebarTrigger className="lg:hidden mb-4 flex">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-white/30 text-white bg-white/5 hover:bg-white/10"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M21 12H3M3 6h18M9 18h12" />
-                      </svg>
-                      <span className="ml-2">History</span>
-                    </Button>
-                  </SidebarTrigger>
-
-                  {messages.map((message, index) => (
-                    <div
-                      key={index}
-                      className={`flex ${
-                        message.role === "user"
-                          ? "justify-end"
-                          : "justify-start"
-                      }`}
-                    >
-                      <div
-                        className={`max-w-[85%] rounded-2xl p-5 ${
-                          message.role === "user"
-                            ? "bg-gradient-to-r from-blue-600/40 to-indigo-600/40 border border-blue-500/30 text-white"
-                            : "bg-white/5 border border-white/10 text-white"
-                        }`}
-                      >
-                        <div className="whitespace-pre-wrap markdown-content prose prose-invert prose-headings:text-blue-300 prose-a:text-blue-300 max-w-none">
-                          <Markdown>{message.content}</Markdown>
-                        </div>
-                        <div className="mt-2 text-xs text-white/50 flex justify-end">
-                          {new Date(message.timestamp).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-5 flex items-center space-x-3">
-                        <Loader2
-                          size={18}
-                          className="animate-spin text-blue-400"
-                        />
-                        <span className="text-zinc-300">Thinking...</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <Messages isLoading={isLoading} messages={messages} />
               )}
             </div>
 
