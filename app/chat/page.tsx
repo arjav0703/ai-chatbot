@@ -11,13 +11,6 @@ import ChatSidebar from "@/components/chat/ChatSidebar";
 import "./style.css";
 import { supabase } from "@/lib/supabase";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import EmptyState from "@/components/chat/EmptyState";
 import Messages from "@/components/chat/Messages";
 import ChatSettings from "@/components/chat/ChatSettings";
