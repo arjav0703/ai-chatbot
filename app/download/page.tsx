@@ -22,7 +22,7 @@ const DownloadPage = () => {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mb-16">
+        <div className="mt-8 grid grid-cols-3 gap-8 max-w-5xl mb-16">
           <Motiondiv>
             <InstallButton os="android" />
           </Motiondiv>
@@ -120,16 +120,28 @@ export default DownloadPage;
 
 function InstallButton({ os }: { os: "android" | "ios" }) {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
-  const [showButton, setShowButton] = useState(false);
+  const [isPWASupported, setIsPWASupported] = useState(false);
 
   useEffect(() => {
     const handler = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setShowButton(true);
+      setIsPWASupported(true);
     };
 
     window.addEventListener("beforeinstallprompt", handler as EventListener);
+
+    // Check if already installed or on iOS (different install method)
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      // Already installed
+      setIsPWASupported(false);
+    } else if (
+      /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+      !(window as any).MSStream
+    ) {
+      // iOS devices - PWA support works differently
+      setIsPWASupported(true);
+    }
 
     return () =>
       window.removeEventListener(
@@ -139,26 +151,29 @@ function InstallButton({ os }: { os: "android" | "ios" }) {
   }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
+    if (deferredPrompt) {
+      // install prompt
+      (deferredPrompt as any).prompt();
 
-    // Show the install prompt
-    (deferredPrompt as any).prompt();
+      // Wait for user to respond
+      const choiceResult = await (deferredPrompt as any).userChoice;
 
-    // Wait for the user to respond to the prompt
-    const choiceResult = await (deferredPrompt as any).userChoice;
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the install prompt");
+      } else {
+        console.log("User dismissed the install prompt");
+      }
 
-    if (choiceResult.outcome === "accepted") {
-      console.log("User accepted the install prompt");
+      // Clear saved prompt
+      setDeferredPrompt(null);
+    } else if (os === "ios") {
+      alert(
+        "To install this app on your iPhone: tap the share button, then 'Add to Home Screen'",
+      );
     } else {
-      console.log("User dismissed the install prompt");
+      alert("Installation is not supported on this browser or device.");
     }
-
-    // Clear the saved prompt
-    setDeferredPrompt(null);
-    setShowButton(false);
   };
-
-  if (!showButton) return null;
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
