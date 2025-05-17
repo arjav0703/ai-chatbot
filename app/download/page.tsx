@@ -149,6 +149,7 @@ function InstallButton({ os }: { os: "android" | "ios" }) {
         handler as EventListener,
       );
   }, []);
+  console.log("PWA support:", isPWASupported);
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
