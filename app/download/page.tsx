@@ -30,84 +30,66 @@ const DownloadPage = () => {
             <InstallButton os="ios" />
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
-              <Button
-                className="bg-transparent w-fit h-fit"
-                onClick={() => {
-                  window.open(
-                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-linux-x64-1.0.0.zip",
-                    "_blank",
-                  );
-                }}
-              >
-                <Image
-                  src="/linux.svg"
-                  alt="Linux Logo"
-                  width={60}
-                  height={60}
-                />
-              </Button>
-            </div>
+            <Button
+              className="bg-white/5 hover:bg-white/5 border border-white/10 rounded-xl hover:border-white/30 transition-all shadow-lg h-full w-full "
+              onClick={() => {
+                window.open(
+                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-linux-x64-1.0.0.zip",
+                  "_blank",
+                );
+              }}
+            >
+              <Image src="/linux.svg" alt="Linux Logo" width={60} height={60} />
+            </Button>
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
-              <Button
-                className="bg-transparent w-fit h-fit"
-                onClick={() => {
-                  window.open(
-                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai_1.0.0_amd64.deb",
-                    "_blank",
-                  );
-                }}
-              >
-                <Image
-                  src="/debian.svg"
-                  alt="Debian Logo"
-                  width={60}
-                  height={60}
-                />
-              </Button>
-            </div>
+            <Button
+              className="bg-white/5 hover:bg-white/5 border border-white/10 rounded-xl hover:border-white/30 transition-all shadow-lg h-full w-full "
+              onClick={() => {
+                window.open(
+                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai_1.0.0_amd64.deb",
+                  "_blank",
+                );
+              }}
+            >
+              <Image
+                src="/debian.svg"
+                alt="Debian Logo"
+                width={60}
+                height={60}
+              />
+            </Button>
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
-              <Button
-                className="bg-transparent w-fit h-fit"
-                onClick={() => {
-                  window.open(
-                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0.Setup.exe",
-                    "_blank",
-                  );
-                }}
-              >
-                <Image
-                  src="/windows.svg"
-                  alt="Windows Logo"
-                  width={60}
-                  height={60}
-                />
-              </Button>
-            </div>
+            <Button
+              className="bg-white/5 hover:bg-white/5 border border-white/10 rounded-xl hover:border-white/30 transition-all shadow-lg h-full w-full "
+              onClick={() => {
+                window.open(
+                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0.Setup.exe",
+                  "_blank",
+                );
+              }}
+            >
+              <Image
+                src="/windows.svg"
+                alt="Windows Logo"
+                width={60}
+                height={60}
+              />
+            </Button>
           </Motiondiv>
           <Motiondiv>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
-              <Button
-                className="bg-transparent w-fit h-fit"
-                onClick={() => {
-                  window.open(
-                    "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0-arm64.dmg",
-                    "_blank",
-                  );
-                }}
-              >
-                <Image
-                  src="/macos.svg"
-                  alt="MacOS Logo"
-                  width={60}
-                  height={60}
-                />
-              </Button>
-            </div>
+            <Button
+              className="bg-white/5 hover:bg-white/5 border border-white/10 rounded-xl hover:border-white/30 transition-all shadow-lg h-full w-full "
+              onClick={() => {
+                window.open(
+                  "https://github.com/arjav0703/cbse-ai-app/releases/download/v1.0.0/cbse-ai-1.0.0-arm64.dmg",
+                  "_blank",
+                );
+              }}
+            >
+              <Image src="/macos.svg" alt="MacOS Logo" width={60} height={60} />
+            </Button>
           </Motiondiv>
         </div>
       </main>
@@ -177,13 +159,11 @@ function InstallButton({ os }: { os: "android" | "ios" }) {
   };
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex items-center justify-center hover:border-white/30 transition-all shadow-lg h-[120px]">
-      <Button
-        className="bg-transparent w-fit h-fit"
-        onClick={handleInstallClick}
-      >
-        <Image src={`/${os}.svg`} alt={`${os} Logo`} width={60} height={60} />
-      </Button>
-    </div>
+    <Button
+      className="bg-white/5 hover:bg-white/5 border border-white/10 rounded-xl hover:border-white/30 transition-all shadow-lg h-full w-full "
+      onClick={handleInstallClick}
+    >
+      <Image src={`/${os}.svg`} alt={`${os} Logo`} width={80} height={80} />
+    </Button>
   );
 }
