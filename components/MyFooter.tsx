@@ -13,9 +13,9 @@ export default function MyFooter() {
           <Link href="/terms" className="hover:text-white text-sm">
             Terms of Use
           </Link>
-          <Link href="/about" className="hover:text-white text-sm">
-            About
-          </Link>
+          <a href="https://github.com/arjav0703/cbse-ai" className="hover:text-white text-sm">
+            Source Code
+          </a>
         </div>
       </div>
     </footer>
