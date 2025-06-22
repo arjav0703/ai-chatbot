@@ -115,7 +115,7 @@ export default function PrivacyPage() {
               href="mailto:arjav@hackclub.app"
               className="text-blue-400 hover:text-blue-300 hover:underline"
             >
-              arjav@hackclub.app
+              team@cbseai.live
             </Link>
           </p>
         </div>
